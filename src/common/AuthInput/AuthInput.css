@@ -1,0 +1,13 @@
+.authInputDesign {
+  width: 25vw;
+  height: 8vh;
+
+  border-radius: 0.5em;
+  border: 0.2em solid black;
+  font-size: 0.5rem;
+}
+
+.authInputDesign:focus {
+  border: 0.2em solid rgb(0, 26, 255);
+  outline: none;
+}
