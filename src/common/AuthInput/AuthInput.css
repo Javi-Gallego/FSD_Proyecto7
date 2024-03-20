@@ -1,0 +1,7 @@
+.authInputDesign {
+  width: 20vw;
+  height: 5vh;
+
+  border-radius: 0.5em;
+  border: 0.2em solid black;
+}

@@ -1,7 +1,10 @@
+import { Header } from "../../common/Header/Header"
+
 export const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="homeDesign">
+      <Header />
+      <div>Home</div>
     </div>
   )
 }
