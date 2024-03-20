@@ -45,6 +45,7 @@ export const Register = () => {
   return (
     <div className="registerDesign">
       <Header />
+      <div className="separator"></div>
       <AuthInput
         type="userName"
         name="userName"
@@ -52,6 +53,7 @@ export const Register = () => {
         value={credentials.userName || ""}
         functionChange={inputHandler}
       />
+      <div className="separator"></div>
       <AuthInput
         type="email"
         name="email"
@@ -59,6 +61,7 @@ export const Register = () => {
         value={credentials.email || ""}
         functionChange={inputHandler}
       />
+      <div className="separator"></div>
       <AuthInput
         type="password"
         name="password"
@@ -66,10 +69,11 @@ export const Register = () => {
         value={credentials.password || ""}
         functionChange={inputHandler}
       />
+      <div className="separator"></div>
       <AuthButton
         text="Register"
         functionClick={regUser}
-        currentClass="authButtonDesign"
+        currentClass="authButtonDesign button-4"
       />
     </div>
   )

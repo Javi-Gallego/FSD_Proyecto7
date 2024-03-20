@@ -53,6 +53,7 @@ export const Login = () => {
   return (
     <div className="loginDesign">
       <Header />
+      <div className="separator"></div>
       <AuthInput
         type="email"
         name="email"
@@ -60,6 +61,7 @@ export const Login = () => {
         value={credentials.email || ""}
         functionChange={inputHandler}
       />
+      <div className="separator"></div>
       <AuthInput
         type="password"
         name="password"
@@ -67,10 +69,11 @@ export const Login = () => {
         value={credentials.password || ""}
         functionChange={inputHandler}
       />
+      <div className="separator"></div>
       <AuthButton
         text="Login"
         functionClick={logMe}
-        currentClass="buttonDesign"
+        currentClass="authButtonDesign button-4"
       />
     </div>
   )

@@ -7,5 +7,10 @@
   justify-content: flex-start;
   align-items: center;
 
-  background-color: rgb(203, 231, 165);
+  background-color: rgb(146, 171, 185);
+}
+
+.separator{
+  height: 2em;
+  width: 100vh;
 }

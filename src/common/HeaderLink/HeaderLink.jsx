@@ -5,7 +5,7 @@ export const HeaderLink = ({ title, destination }) => {
   const navigate = useNavigate()
 
   return (
-    <div className="headerLinkDesign" onClick={() => navigate(destination)}>
+    <div data-name={title} className="headerLinkDesign" onClick={() => navigate(destination)}>
       {title}
     </div>
   )
