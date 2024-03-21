@@ -5,7 +5,9 @@ export const AuthInput = ({
   name,
   placeholder,
   value,
-  functionChange,
+  onChangeFunction,
+  onBlurFunction,
+  className
 }) => {
   return (
     <input
@@ -13,8 +15,9 @@ export const AuthInput = ({
       name={name}
       placeholder={placeholder}
       value={value}
-      onChange={functionChange}
-      className="authInputDesign"
+      onChange={onChangeFunction}
+      onBlur={onBlurFunction}
+      className={className}
     />
   )
 }

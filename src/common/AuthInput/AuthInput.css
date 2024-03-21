@@ -7,6 +7,10 @@
   font-size: 0.5rem;
 }
 
+.authInputDesignError {
+  border: 0.2em solid red;
+}
+
 .authInputDesign:focus {
   border: 0.2em solid rgb(0, 26, 255);
   outline: none;

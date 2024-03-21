@@ -59,7 +59,7 @@ export const Login = () => {
         name="email"
         placeholder="Escribe tu email"
         value={credentials.email || ""}
-        functionChange={inputHandler}
+        onChangeFunction={inputHandler}
       />
       <div className="separator"></div>
       <AuthInput
@@ -67,7 +67,7 @@ export const Login = () => {
         name="password"
         placeholder="Escribe tu password"
         value={credentials.password || ""}
-        functionChange={inputHandler}
+        onChangeFunction={inputHandler}
       />
       <div className="separator"></div>
       <AuthButton
