@@ -1,5 +1,6 @@
 .homeDesign {
-  height: 100vh;
+  height: auto;
+  min-height: 90vh;
   width: 100vw;
 
   display: flex;
@@ -11,9 +12,4 @@
   background-size: cover;
   background-position: center;
   background-color: white;
-}
-
-.homeDesign img {
-  width: 100vw;
-  height: auto;
 }

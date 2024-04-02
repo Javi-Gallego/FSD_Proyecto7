@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AuthButton } from "../../common/AuthButton/AuthButton";
-import { AuthInput } from "../../common/AuthInput/AuthInput";
+import { MyInput } from "../../common/MyInput/MyInput";
 import { Header } from "../../common/Header/Header";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
@@ -13,6 +13,8 @@ export const Login = () => {
     email: "",
     password: "",
   });
+
+  const [msgError, setMsgError] = useState("");
 
   let fetched = {};
   sessionStorage.setItem("auth", false);
@@ -54,7 +56,7 @@ export const Login = () => {
     <div className="loginDesign">
       <Header />
       <div className="separator"></div>
-      <AuthInput
+      <MyInput
         className="authInputDesign"
         type="email"
         name="email"
@@ -63,7 +65,7 @@ export const Login = () => {
         onChangeFunction={inputHandler}
       />
       <div className="separator"></div>
-      <AuthInput
+      <MyInput
         className="authInputDesign"
         type="password"
         name="password"
@@ -77,6 +79,7 @@ export const Login = () => {
         functionClick={logMe}
         currentClass="authButtonDesign button-4"
       />
+      <div className="fieldError">{msgError}</div>
     </div>
   );
 };

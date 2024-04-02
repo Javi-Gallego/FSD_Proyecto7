@@ -1,0 +1,77 @@
+
+.tablonDesign{
+    height: auto;
+    width: 80vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    /* background-color: cornflowerblue; */
+    border-radius: 1em;
+    margin: 2em;
+    padding: 1em;
+}
+
+.mensajeDesign{
+
+    height: auto;
+    width: 70vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+
+    font-weight: bold;
+    font-size: 1.1rem;
+
+    background-color: rgb(166, 188, 228);
+    margin: 2em;
+    padding: 1em;
+}
+
+.mensajeDesign:hover{
+    background-color: rgb(201, 210, 228);
+}
+
+.minorText{
+    font-size: 0.8rem;
+    padding: 1em 2em;
+}
+
+.minorText img{
+    height: 0.9em;
+    width: auto;
+
+    transition: 0.3s
+}
+.minorText img:hover, .minorText img:active{
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.4);
+    filter: drop-shadow(0 0 0.2em rgb(255, 255, 255));
+}
+.minorText img:active{
+    cursor: pointer;
+    transition: 0.3s;
+    transform: scale(1.2);
+    /* filter: drop-shadow(0 0 0.1em rgb(255, 0, 0)); */
+}
+
+.comentary{
+    padding: 0 2em;
+}
+
+.addComment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invisible{
+    display: none;
+}

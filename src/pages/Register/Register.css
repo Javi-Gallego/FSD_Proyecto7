@@ -15,12 +15,14 @@
   width: 100vh;
 }
 
-.error {
+.fieldEr {
   display: flex;
   justify-content: center;
   align-items: center;
   
   height: 3em;
+  background-color: white;
   color: red;
   font-size: 1rem;
+  font-weight: bold;
 }

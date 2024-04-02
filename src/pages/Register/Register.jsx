@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AuthButton } from "../../common/AuthButton/AuthButton";
-import { AuthInput } from "../../common/AuthInput/AuthInput";
+import { MyInput } from "../../common/MyInput/MyInput";
 import { Header } from "../../common/Header/Header";
 import { registerMe } from "../../services/apiCalls";
 import "./Register.css";
@@ -51,22 +51,29 @@ export const Register = () => {
         return;
       }
     }
+    for (let field in userError) {
+      if (userError[field] !== "") {
+        let newField = field.replace("Error", "");
+        setMsgError(`No has rellenado correctamente el ${newField}`);
+        return;
+      }
+    }
 
     fetched = await registerMe(credentials);
+
+    navigate("/registerSuccess");
 
     if (!fetched.success) {
       setMsgError(fetched.message);
       return;
     }
-
-    navigate("/registerSuccess");
   };
 
   return (
     <div className="registerDesign">
       <Header />
       <div className="separator"></div>
-      <AuthInput
+      <MyInput
         className={`authInputDesign ${
           userError.userNameError !== "" ? "authInputDesignError" : ""
         }`}
@@ -75,10 +82,9 @@ export const Register = () => {
         placeholder="Escribe tu nombre de usuario"
         value={credentials.userName || ""}
         onChangeFunction={inputHandler}
-        // onBlurFunction={checkError}
       />
-      <div className="error">{userError.userNameError}</div>
-      <AuthInput
+      <div className="fieldEr">{userError.userNameError}</div>
+      <MyInput
         className={`authInputDesign ${
           userError.emailError !== "" ? "authInputDesignError" : ""
         }`}
@@ -87,10 +93,9 @@ export const Register = () => {
         placeholder="Escribe tu email"
         value={credentials.email || ""}
         onChangeFunction={inputHandler}
-        // onBlurFunction={checkError}
       />
-      <div className="error">{userError.emailError}</div>
-      <AuthInput
+      <div className="fieldEr">{userError.emailError}</div>
+      <MyInput
         className={`authInputDesign ${
           userError.passwordError !== "" ? "authInputDesignError" : ""
         }`}
@@ -99,9 +104,8 @@ export const Register = () => {
         placeholder="Escribe tu password"
         value={credentials.password || ""}
         onChangeFunction={inputHandler}
-        // onBlurFunction={checkError}
       />
-      <div className="error">{userError.passwordError}</div>
+      <div className="fieldEr">{userError.passwordError}</div>
       <AuthButton
         text="Register"
         functionClick={regUser}

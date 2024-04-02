@@ -1,13 +1,11 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
 body {
-  box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   justify-content: center;

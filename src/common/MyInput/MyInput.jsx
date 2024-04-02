@@ -1,6 +1,6 @@
-import "./AuthInput.css"
+import "./MyInput.css"
 
-export const AuthInput = ({
+export const MyInput = ({
   type,
   name,
   placeholder,
