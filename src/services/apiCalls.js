@@ -80,53 +80,51 @@ export const updateProfile = async (profile, token) => {};
 
 export const getTimeline = async (token) => {
   const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-  }
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   try {
-      const response = await fetch(rootUrl + "posts/timeline", options)
+    const response = await fetch(rootUrl + "posts/timeline", options);
 
-      const data = await response.json()
+    const data = await response.json();
 
-      if(!data.success){
-          throw new Error(data.message)
-      }
-      console.log("GetTimeline")
-      // console.log(data.data)
-      return data.data
-      
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    console.log("GetTimeline");
+    // console.log(data.data)
+    return data.data;
   } catch (error) {
-      console.log("error1: " + error)
-      return error
-  }   
-}
+    console.log("error1: " + error);
+    return error;
+  }
+};
 
 export const likeFunction = async (postId) => {
   const options = {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${sessionStorage.getItem("token")}`
-      }
-  }
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
 
   try {
-      const response = await fetch(rootUrl + "posts/like/" + postId, options)
+    const response = await fetch(rootUrl + "posts/like/" + postId, options);
 
-      const data = await response.json()
+    const data = await response.json();
 
-      if(!data.success){
-          throw new Error(data.message)
-      }
+    if (!data.success) {
+      throw new Error(data.message);
+    }
 
-      return data.data
-      
+    return data.data;
   } catch (error) {
-      console.log("error1: " + error)
-      return error
+    console.log("error1: " + error);
+    return error;
   }
-}
+};

@@ -10,7 +10,7 @@
   background-color: white;
 }
 
-.separator{
+.separator {
   height: 2em;
   width: 100vh;
 }
@@ -19,7 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   height: 3em;
   background-color: white;
   color: red;

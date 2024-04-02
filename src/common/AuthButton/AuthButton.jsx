@@ -1,10 +1,9 @@
+import "./AuthButton.css";
 
-import "./AuthButton.css"
-
-export const AuthButton = ({text, functionClick, currentClass}) => {
-    return (
-        <div onClick={functionClick} className={currentClass}>
-            {text}
-        </div>
-    )
-}
+export const AuthButton = ({ text, functionClick, currentClass }) => {
+  return (
+    <div onClick={functionClick} className={currentClass}>
+      {text}
+    </div>
+  );
+};

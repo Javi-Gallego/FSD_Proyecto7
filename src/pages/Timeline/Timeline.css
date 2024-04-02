@@ -1,13 +1,9 @@
-
-.timelineDesign{
-    height: auto;
-    width: 100vw;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center; 
-
-    /* background-color: rgb(236, 241, 251); */
-    background-color: white;
+.timelineDesign {
+  height: auto;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
 }

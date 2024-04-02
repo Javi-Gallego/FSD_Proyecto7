@@ -1,12 +1,16 @@
-import "./HeaderLink.css"
-import { useNavigate } from "react-router-dom"
+import "./HeaderLink.css";
+import { useNavigate } from "react-router-dom";
 
 export const HeaderLink = ({ title, destination }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <div data-name={title} className="headerLinkDesign" onClick={() => navigate(destination)}>
+    <div
+      data-name={title}
+      className="headerLinkDesign"
+      onClick={() => navigate(destination)}
+    >
       {title}
     </div>
-  )
-}
+  );
+};

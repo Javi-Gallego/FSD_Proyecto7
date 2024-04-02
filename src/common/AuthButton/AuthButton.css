@@ -14,21 +14,21 @@
   background-color: rgb(31, 115, 240);
   border: 0.18em solid rgb(31, 115, 240);
   color: white;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .authButtonDesign:hover {
   animation: pulse 1s infinite;
-  transition: .3s;
+  transition: 0.3s;
 }
 @keyframes pulse {
   0% {
     transform: scale(1);
   }
   70% {
-    transform: scale(.9);
+    transform: scale(0.9);
   }
-    100% {
+  100% {
     transform: scale(1);
   }
 }

@@ -1,4 +1,4 @@
-import "./MyInput.css"
+import "./MyInput.css";
 
 export const MyInput = ({
   type,
@@ -6,7 +6,7 @@ export const MyInput = ({
   placeholder,
   value,
   onChangeFunction,
-  className
+  className,
 }) => {
   return (
     <input
@@ -17,5 +17,5 @@ export const MyInput = ({
       onChange={onChangeFunction}
       className={className}
     />
-  )
-}
+  );
+};

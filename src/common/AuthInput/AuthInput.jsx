@@ -1,4 +1,4 @@
-import "./AuthInput.css"
+import "./AuthInput.css";
 
 export const AuthInput = ({
   type,
@@ -6,7 +6,7 @@ export const AuthInput = ({
   placeholder,
   value,
   onChangeFunction,
-  className
+  className,
 }) => {
   return (
     <input
@@ -17,5 +17,5 @@ export const AuthInput = ({
       onChange={onChangeFunction}
       className={className}
     />
-  )
-}
+  );
+};

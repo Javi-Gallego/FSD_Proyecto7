@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-image: url('../../img/SocialNetwork.jpg');
+  background-image: url("../../img/SocialNetwork.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
