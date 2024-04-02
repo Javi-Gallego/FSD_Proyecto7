@@ -1,8 +1,18 @@
-# React + Vite
+# Geekshubs Social Network
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In progress:  FrontEnd of this project: https://github.com/Javi-Gallego/FSD_Proyecto5.git
 
-Currently, two official plugins are available:
+## Development:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+``` js
+ const developer = "Javier Gallego";
+
+ console.log("Desarrollado por: " + developer);
+```  
+
+## Contact
+<div align="center">
+<a href = "mailto:galgar@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/javier-gallego-dev"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+<a href="https://github.com/Javi-Gallego"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
+</div>
