@@ -50,3 +50,28 @@ export const loginMe = async (credentials) => {
     return error;
   }
 };
+
+export const getProfile = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(rootUrl + "profile", options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};

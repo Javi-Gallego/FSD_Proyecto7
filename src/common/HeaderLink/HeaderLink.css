@@ -4,9 +4,10 @@
   justify-content: center;
   align-items: center;
 
-  color: rgb(255, 255, 255);
+  color: rgb(31, 115, 240);
   position: relative;
   transition: all 300ms ease;
+  font-weight: bold;
   width: fit-content;
   cursor: pointer;
   margin: 1em;
@@ -21,7 +22,7 @@
   position: absolute;
   top: 0;
   left: -0.2em;
-  background: rgb(40, 40, 40);
+  background: white;
   height: 1em;
   overflow: hidden;
   transition: all 300ms ease;
@@ -31,7 +32,7 @@
 .headerLinkDesign:hover::before {
   top: -0.18em;
   left: 0;
-  color: rgb(103, 237, 255);
+  color: rgb(31, 115, 240);
 }
 
 .headerLinkDesign::after {
@@ -42,7 +43,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgb(103, 237, 255);
+  background: rgb(31, 115, 240);
   transition: all 300ms ease;
 }
 

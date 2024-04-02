@@ -1,10 +1,17 @@
 .headerDesign {
   height: 10vh;
   width: 100vw;
-
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   align-items: center;
-
-  background-color: rgb(40, 40, 40);
+  background-color: white;
+  position: relative;
+}
+.headerDesign::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%; 
+  width: 80%; 
+  border-bottom: 2px solid rgb(31, 115, 240); 
 }

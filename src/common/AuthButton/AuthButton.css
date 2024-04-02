@@ -1,19 +1,19 @@
 .authButtonDesign {
-  width: 25vw;
+  width: 17vw;
   height: 8vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border-radius: 0.5em;
+  border-radius: 0.3em;
   font-size: 1rem;
   font-weight: bold;
 
   cursor: pointer;
-  background-color: transparent;
-  border: 0.18em solid rgb(0, 26, 255);
-  color: rgb(0, 26, 255);
+  background-color: rgb(31, 115, 240);
+  border: 0.18em solid rgb(31, 115, 240);
+  color: white;
   transition: .3s;
 }
 
