@@ -5,16 +5,17 @@ import { Header } from "../../common/Header/Header";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { loginMe } from "../../services/apiCalls";
-import { login } from "../../app/slices/userSlice"
+import { login } from "../../app/slices/userSlice";
 import { useDispatch } from "react-redux";
 
 import "./Login.css";
+import { MyButton } from "../../common/MyButton/MyButton";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   sessionStorage.setItem("auth", false);
- 
+
   const [msgError, setMsgError] = useState("");
   const [credentials, setCredentials] = useState({
     email: "",
@@ -48,14 +49,10 @@ export const Login = () => {
     const allowed = {
       token: fetched.token,
       user: decoded,
-    }
-    
-    dispatch(login({credentials: allowed}))
+    };
 
-    // sessionStorage.setItem("token", fetched.token);
-    // sessionStorage.setItem("user", JSON.stringify(decoded));
-    // sessionStorage.setItem("userName", decoded.userName);
-    // sessionStorage.setItem("auth", true);
+    dispatch(login({ credentials: allowed }));
+    console.log(allowed);
     navigate("/");
   };
 
@@ -80,7 +77,7 @@ export const Login = () => {
         onChangeFunction={inputHandler}
       />
       <div className="separator"></div>
-      <AuthButton
+      <MyButton
         text="Login"
         functionClick={logMe}
         currentClass="authButtonDesign button-4"

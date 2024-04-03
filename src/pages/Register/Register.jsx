@@ -6,6 +6,7 @@ import { registerMe } from "../../services/apiCalls";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import { validate } from "../../utils/functions";
+import { MyButton } from "../../common/MyButton/MyButton";
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ export const Register = () => {
         onChangeFunction={inputHandler}
       />
       <div className="fieldEr">{userError.passwordError}</div>
-      <AuthButton
+      <MyButton
         text="Register"
         functionClick={regUser}
         currentClass="authButtonDesign button-4"

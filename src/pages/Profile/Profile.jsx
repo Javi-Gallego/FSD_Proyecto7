@@ -1,33 +1,36 @@
-import { Header } from "../../common/Header/Header";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { getProfile, updateProfile } from "../../services/apiCalls";
 import { validate } from "../../utils/functions";
+import { userData, login } from "../../app/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import spinner from "../../img/rocket.gif";
 import profilePhoto from "../../img/userphoto.png";
 import camera from "../../assets/camera.svg";
+import { MyInput } from "../../common/MyInput/MyInput";
 
 export const Profile = () => {
-
   const navigate = useNavigate();
+  const reduxUser = useSelector(userData);
+  const dispatch = useDispatch();
 
   const [firstProfile, setFirstProfile] = useState({
-    firstName: "",
+    userName: "",
     lastName: "",
     email: "",
     photo: "",
   });
 
   const [profile, setProfile] = useState({
-    firstName: "",
+    userName: "",
     lastName: "",
     email: "",
     photo: "",
   });
 
   const [profileError, setProfileError] = useState({
-    firstNameError: "",
+    userNameError: "",
     lastNameError: "",
     emailError: "",
     photoError: "",
@@ -38,8 +41,11 @@ export const Profile = () => {
   const [firstFetch, setFirstFetch] = useState(false);
 
   useEffect(() => {
+    if (!reduxUser.credentials.token){
+      navigate("/");
+    }
     if (!firstFetch) {
-      getFirstProfile();
+      retrieveProfile();
     }
   }, []);
 
@@ -48,30 +54,45 @@ export const Profile = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+
+    checkError(e);
   };
 
-  const getFirstProfile = async () => {
+  const retrieveProfile = async () => {
     try {
-      if (sessionStorage.getItem("auth") === "false") {
-        navigate("/");
-      }
 
       if (profile.email === "") {
-        const NewProfile = await getProfile(sessionStorage.getItem("token"));
-
-        setFirstProfile({
-          userName: NewProfile.userName,
-          email: NewProfile.email,
-          isActive: NewProfile.is_active,
-          privacy: NewProfile.privacy,
-        });
-
-        setProfile({
-          userName: NewProfile.userName,
-          email: NewProfile.email,
-          isActive: NewProfile.is_active,
-          privacy: NewProfile.privacy,
-        });
+        const NewProfile = await getProfile(reduxUser.credentials.token);
+        console.log(NewProfile.userName)
+        if(firstFetch === false){
+          setFirstProfile({
+            userName: NewProfile.userName,
+            email: NewProfile.email,
+            isActive: NewProfile.is_active,
+            privacy: NewProfile.privacy,
+          });
+  
+          setProfile({
+            userName: NewProfile.userName,
+            email: NewProfile.email,
+            isActive: NewProfile.is_active,
+            privacy: NewProfile.privacy,
+          });
+        } else{
+          setFirstProfile({
+            userName: profile.userName,
+            email: profile.email,
+            isActive: profile.is_active,
+            privacy: profile.privacy,
+          });
+  
+          setProfile({
+            userName: NewProfile.userName,
+            email: NewProfile.email,
+            isActive: NewProfile.is_active,
+            privacy: NewProfile.privacy,
+          });
+        }
 
         setFirstFetch(true);
       }
@@ -99,10 +120,7 @@ export const Profile = () => {
           updatedFields[field] = profile[field];
         }
       }
-      const updated = await updateProfile(
-        sessionStorage.getItem("token"),
-        updatedFields
-      );
+      const updated = await updateProfile(reduxUser.credentials.token);
       setDisabled("disabled");
     } catch (error) {}
   };
@@ -125,63 +143,67 @@ export const Profile = () => {
             ) : (
               <img src={profilePhoto} alt="profile" />
             )}
-            <div className="editButton"><img src={camera}></img></div><form action="http://localhost:4000/API/upload/" enctype="multipart/form-data" method="post">
-              <input type="file" name="photo" id="photo"/>
-              <input type="submit" value="Subir foto"/>
+            <div className="editButton">
+              <img src={camera}></img>
+            </div>
+            <form
+              action="http://localhost:4000/API/upload/"
+              encType="multipart/form-data"
+              method="post"
+            >
+              <input type="file" name="photo" id="photo" />
+              <input type="submit" value="Subir foto" />
             </form>
           </article>
           <article className="profileCardDesign">
             <p>
-              Nombre:{profile.userName}
-              {/* <FieldInput
+              Nombre:
+              <MyInput
                 type="text"
                 name="firstName"
-                value={profile.firstName || ""}
+                value={profile.userName || ""}
                 disabled={disabled}
                 onChangeFunction={inputHandler}
-                onBlur={checkError}
                 className={
                   disabled === ""
                     ? "fieldInputDesign enabledInput"
                     : "fieldInputDesign"
                 }
-              /> */}
+              />
             </p>
-            {/* <div className="fieldEr">{profileError.firstNameError}</div> */}
+            {/* <div className="fieldEr">{profileError.userNameError}</div> */}
             <p>
               Apellido:
-              {/* <FieldInput
+              <MyInput
                 type="text"
                 name="lastName"
                 value={profile.lastName || ""}
                 disabled={disabled}
                 onChangeFunction={inputHandler}
-                onBlur={checkError}
                 className={
                   disabled === ""
                     ? "fieldInputDesign enabledInput"
                     : "fieldInputDesign"
                 }
-              /> */}
+              />
             </p>
-            {/* <div className="fieldEr">{profileError.lastNameError}</div> */}
+            <div className="fieldEr">{profileError.lastNameError}</div>
             <p>
-              Email:{profile.email}
-              {/* <FieldInput
+              Email:
+              <MyInput
                 type="email"
                 name="email"
                 value={profile.email || ""}
                 disabled={disabled}
                 onChangeFunction={inputHandler}
-                onBlur={checkError}
                 className={
                   disabled === ""
                     ? "fieldInputDesign enabledInput"
                     : "fieldInputDesign"
                 }
-              /> */}
+              />
             </p>
-            {/* <div className="fieldEr">{profileError.emailError}</div> */}
+            <div className="fieldEr">{profileError.emailError}</div>
           </article>
           <article className="profileCardDesign">
             {/* <Button

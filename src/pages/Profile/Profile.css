@@ -10,7 +10,6 @@
   background-color: white;
   font-weight: bold;
 }
-
 .profileCardDesign {
   height: 28em;
   width: 15em;
@@ -21,12 +20,10 @@
   background-color: white;
   color: rgb(31, 115, 240);
 }
-
 .profileCardDesign img {
   height: 10em;
   width: 10em;
 }
-
 .fieldEr {
   display: flex;
   justify-content: center;
@@ -38,7 +35,51 @@
   font-weight: bold;
   background-color: transparent;
 }
-.editButton img{
+.editButton img {
   height: auto;
   width: 2em;
+}
+.fieldInputDesign {
+  width: 15em;
+  height: 2em;
+  text-align: center;
+  border: 0.2em solid white;
+  background-color: white;
+  font-size: 1rem;
+  color: rgb(31, 95, 206);
+}
+.fieldInputDesignError {
+  border: 0.2em solid red;
+}
+.enabledInput {
+  background-color: white;
+  color: rgb(8, 92, 92);
+}
+.enabledInput:focus {
+  border: 0.2em solid rgb(217, 202, 34);
+  outline: none;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: white;
+  color: rgb(31, 95, 206);
+  border: 0.1em solid rgb(31, 95, 206);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(31, 95, 206);
+  color: white;
 }
