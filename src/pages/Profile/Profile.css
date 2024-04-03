@@ -35,9 +35,11 @@
   font-weight: bold;
   background-color: transparent;
 }
-.editButton img {
-  height: auto;
-  width: 2em;
+.editButton form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .fieldInputDesign {
   width: 15em;
@@ -46,40 +48,47 @@
   border: 0.2em solid white;
   background-color: white;
   font-size: 1rem;
+  font-weight: bold;
   color: rgb(31, 95, 206);
 }
 .fieldInputDesignError {
   border: 0.2em solid red;
 }
 .enabledInput {
-  background-color: white;
-  color: rgb(8, 92, 92);
+  background-color: rgb(96, 154, 252);
+  color: red;
 }
 .enabledInput:focus {
   border: 0.2em solid rgb(217, 202, 34);
   outline: none;
 }
-input[type="text"] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid red;
-  border-radius: 4px;
+
+input[type="file"] {
+  display: none;
+}
+
+/* Estiliza el label como un botón */
+label {
+  display: inline-block;
+  cursor: pointer;
 }
 
 input[type="submit"] {
+  height: 2.5em;
+  width: 6em;
+  font-weight: bold;
   background-color: white;
   color: rgb(31, 95, 206);
-  border: 0.1em solid rgb(31, 95, 206);
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
+  border: 0.2em solid rgb(31, 95, 206);
+  border-radius: 0.3em;
   cursor: pointer;
 }
 
 input[type="submit"]:hover {
   background-color: rgb(31, 95, 206);
   color: white;
+}
+#cam{
+  height: auto;
+  width: 2em;
 }

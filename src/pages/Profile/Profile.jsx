@@ -9,6 +9,7 @@ import spinner from "../../img/rocket.gif";
 import profilePhoto from "../../img/userphoto.png";
 import camera from "../../assets/camera.svg";
 import { MyInput } from "../../common/MyInput/MyInput";
+import { MyButton } from "../../common/MyButton/MyButton";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export const Profile = () => {
   const [firstFetch, setFirstFetch] = useState(false);
 
   useEffect(() => {
-    if (!reduxUser.credentials.token){
+    if (!reduxUser.credentials.token) {
       navigate("/");
     }
     if (!firstFetch) {
@@ -60,32 +61,31 @@ export const Profile = () => {
 
   const retrieveProfile = async () => {
     try {
-
       if (profile.email === "") {
         const NewProfile = await getProfile(reduxUser.credentials.token);
-        console.log(NewProfile.userName)
-        if(firstFetch === false){
+        console.log(NewProfile.userName);
+        if (firstFetch === false) {
           setFirstProfile({
             userName: NewProfile.userName,
             email: NewProfile.email,
             isActive: NewProfile.is_active,
             privacy: NewProfile.privacy,
           });
-  
+
           setProfile({
             userName: NewProfile.userName,
             email: NewProfile.email,
             isActive: NewProfile.is_active,
             privacy: NewProfile.privacy,
           });
-        } else{
+        } else {
           setFirstProfile({
             userName: profile.userName,
             email: profile.email,
             isActive: profile.is_active,
             privacy: profile.privacy,
           });
-  
+
           setProfile({
             userName: NewProfile.userName,
             email: NewProfile.email,
@@ -131,7 +131,7 @@ export const Profile = () => {
 
   return (
     <>
-      {profile.email === "" ? (
+      {firstProfile.email === "" ? (
         <div className="profileDesign">
           <img src={spinner}></img>
         </div>
@@ -144,16 +144,18 @@ export const Profile = () => {
               <img src={profilePhoto} alt="profile" />
             )}
             <div className="editButton">
-              <img src={camera}></img>
+              <form
+                action="http://localhost:4000/API/upload/"
+                encType="multipart/form-data"
+                method="post"
+              >
+                <label for="photo">
+                  <img id="cam" src={camera}></img>
+                </label>
+                <input id="photo" type="file" name="photo" />
+                <input type="submit" value="Subir foto" />
+              </form>
             </div>
-            <form
-              action="http://localhost:4000/API/upload/"
-              encType="multipart/form-data"
-              method="post"
-            >
-              <input type="file" name="photo" id="photo" />
-              <input type="submit" value="Subir foto" />
-            </form>
           </article>
           <article className="profileCardDesign">
             <p>
@@ -206,19 +208,19 @@ export const Profile = () => {
             <div className="fieldEr">{profileError.emailError}</div>
           </article>
           <article className="profileCardDesign">
-            {/* <Button
+            <MyButton
               text={disabled === "" ? "Guardar" : "Edit"}
               functionClick={disabled === "" ? changeProfile : updateDisabled}
               currentClass={
                 disabled === "" ? "buttonDesign update" : "buttonDesign"
               }
-            /> */}
+            />
             <div className="separator"></div>
-            {/* <Button
+            <MyButton
               text="Cambiar contraseña"
               functionClick={changePass}
               currentClass="buttonDesign"
-            /> */}
+            />
           </article>
         </div>
       )}

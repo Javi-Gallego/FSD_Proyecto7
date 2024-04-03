@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { AuthButton } from "../../common/AuthButton/AuthButton";
 import { MyInput } from "../../common/MyInput/MyInput";
-import { Header } from "../../common/Header/Header";
 import { registerMe } from "../../services/apiCalls";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";

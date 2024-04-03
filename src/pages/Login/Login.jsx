@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { AuthButton } from "../../common/AuthButton/AuthButton";
 import { MyInput } from "../../common/MyInput/MyInput";
-import { Header } from "../../common/Header/Header";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { loginMe } from "../../services/apiCalls";
