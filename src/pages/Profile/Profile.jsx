@@ -116,7 +116,6 @@ export const Profile = () => {
 
   return (
     <>
-      <Header />
       {profile.email === "" ? (
         <div className="profileDesign">
           <img src={spinner}></img>

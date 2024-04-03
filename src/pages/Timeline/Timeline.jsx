@@ -25,7 +25,6 @@ export const Timeline = () => {
 
   return (
     <div className="timelineDesign">
-      <Header />
       {Object.keys(msg).length !== 0 && <TablonTimeline tablon={msg} />}
     </div>
   );

@@ -54,7 +54,6 @@ export const Login = () => {
 
   return (
     <div className="loginDesign">
-      <Header />
       <div className="separator"></div>
       <MyInput
         className="authInputDesign"
