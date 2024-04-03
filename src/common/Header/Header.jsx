@@ -1,15 +1,19 @@
 import { HeaderLink } from "../HeaderLink/HeaderLink";
 import { LogoutLink } from "../LogoutLink/LogoutLink";
 import "./Header.css";
+import { useSelector, useDispatch } from "react-redux";
+import { userData, logout } from "../../app/slices/userSlice";
 
 export function Header() {
+  const reduxUser = useSelector(userData)
+
   return (
     <div className="headerDesign">
-      {sessionStorage.getItem("auth") === "true" ? (
+      {reduxUser.credentials.token ? (
         <>
           <HeaderLink title="Home" destination="/" />
           <HeaderLink
-            title={sessionStorage.getItem("userName")}
+            title={reduxUser.credentials.user.userName}
             destination="/profile"
           />
           <HeaderLink title="Timeline" destination="/timeline" />
@@ -25,3 +29,4 @@ export function Header() {
     </div>
   );
 }
+

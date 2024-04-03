@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Header } from "../../common/Header/Header";
 import { TablonTimeline } from "../../common/TablonTimeline/TablonTimeline";
 import { getTimeline } from "../../services/apiCalls";
 import "./Timeline.css";
+import { userData } from "../../app/slices/userSlice";
+import { useSelector } from "react-redux";
 
 export const Timeline = () => {
+  const reduxUser = useSelector(userData);
   const [msg, setMsg] = useState({});
 
   useEffect(() => {
@@ -15,8 +17,8 @@ export const Timeline = () => {
 
   const getData = async () => {
     try {
-      if (sessionStorage.getItem("auth") === "true") {
-        const token = sessionStorage.getItem("token");
+      if (reduxUser.credentials.token) {
+        const token = reduxUser.credentials.token;
         const currentTimeline = await getTimeline(token);
         setMsg(currentTimeline);
       }

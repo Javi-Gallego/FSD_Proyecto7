@@ -5,21 +5,21 @@ import { Header } from "../../common/Header/Header";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { loginMe } from "../../services/apiCalls";
+import { login } from "../../app/slices/userSlice"
+import { useDispatch } from "react-redux";
 
 import "./Login.css";
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  sessionStorage.setItem("auth", false);
+ 
+  const [msgError, setMsgError] = useState("");
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
-
-  const [msgError, setMsgError] = useState("");
-
-  let fetched = {};
-  sessionStorage.setItem("auth", false);
-
-  const navigate = useNavigate();
 
   const inputHandler = (e) => {
     setCredentials((fields) => ({
@@ -36,7 +36,7 @@ export const Login = () => {
       }
     }
 
-    fetched = await loginMe(credentials);
+    const fetched = await loginMe(credentials);
 
     if (!fetched.success) {
       setMsgError(fetched.message);
@@ -45,10 +45,17 @@ export const Login = () => {
 
     const decoded = decodeToken(fetched.token);
 
-    sessionStorage.setItem("token", fetched.token);
-    sessionStorage.setItem("user", JSON.stringify(decoded));
-    sessionStorage.setItem("userName", decoded.userName);
-    sessionStorage.setItem("auth", true);
+    const allowed = {
+      token: fetched.token,
+      user: decoded,
+    }
+    
+    dispatch(login({credentials: allowed}))
+
+    // sessionStorage.setItem("token", fetched.token);
+    // sessionStorage.setItem("user", JSON.stringify(decoded));
+    // sessionStorage.setItem("userName", decoded.userName);
+    // sessionStorage.setItem("auth", true);
     navigate("/");
   };
 

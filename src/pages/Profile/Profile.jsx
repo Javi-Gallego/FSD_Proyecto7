@@ -9,9 +9,6 @@ import profilePhoto from "../../img/userphoto.png";
 import camera from "../../assets/camera.svg";
 
 export const Profile = () => {
-  if (sessionStorage.getItem("auth") === "false") {
-    navigate("/");
-  }
 
   const navigate = useNavigate();
 
