@@ -71,7 +71,6 @@ export const Register = () => {
 
   return (
     <div className="registerDesign">
-      <Header />
       <div className="separator"></div>
       <MyInput
         className={`authInputDesign ${

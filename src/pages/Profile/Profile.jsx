@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { getProfile, updateProfile } from "../../services/apiCalls";
+import { validate } from "../../utils/functions";
 import spinner from "../../img/rocket.gif";
 import profilePhoto from "../../img/userphoto.png";
-// import { FieldInput } from "../../common/FieldInput/FieldInput";
-// import { Button } from "../../common/Button/Button";
-import { validate } from "../../utils/functions";
+import camera from "../../assets/camera.svg";
 
 export const Profile = () => {
   if (sessionStorage.getItem("auth") === "false") {
@@ -130,6 +129,10 @@ export const Profile = () => {
             ) : (
               <img src={profilePhoto} alt="profile" />
             )}
+            <div className="editButton"><img src={camera}></img></div><form action="http://localhost:4000/API/upload/" enctype="multipart/form-data" method="post">
+              <input type="file" name="photo" id="photo"/>
+              <input type="submit" value="Subir foto"/>
+            </form>
           </article>
           <article className="profileCardDesign">
             <p>
