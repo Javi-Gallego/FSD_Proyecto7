@@ -24,8 +24,8 @@
 
   font-weight: bold;
   font-size: 1.1rem;
-
-  background-color: rgb(166, 188, 228);
+  border: 0.2em solid rgb(96, 154, 252);
+  background-color: white;
   margin: 2em;
   padding: 1em;
 }

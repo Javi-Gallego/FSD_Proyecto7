@@ -3,10 +3,12 @@ import likeIcon from "../../img/likesicon3.png";
 import commentIcon from "../../img/comenticon3.png";
 import { getTimeline, likeFunction } from "../../services/apiCalls";
 import { useState } from "react";
-
 import { MyInput } from "../MyInput/MyInput";
+import { userData } from "../../app/slices/userSlice";
+import { useSelector } from "react-redux";
 
 export const TablonTimeline = ({ tablon }) => {
+  const reduxUser = useSelector(userData);
   const [usedTablon, setUsedTablon] = useState(tablon);
   const [commentary, setCommentary] = useState({
     comment: "",
@@ -16,7 +18,7 @@ export const TablonTimeline = ({ tablon }) => {
 
   const handleLikeClick = async (postId) => {
     try {
-      await likeFunction(postId);
+      await likeFunction(postId, reduxUser.credentials.token);
       const newTablon = await getData();
       setUsedTablon(newTablon);
     } catch (error) {}
@@ -24,18 +26,15 @@ export const TablonTimeline = ({ tablon }) => {
 
   const handleCommentClick = async (id, index) => {
     try {
-      console.log(index);
       const viewComment = document.getElementById(`blockComment${index}`);
-      console.log(viewComment);
       viewComment.classList.toggle("invisible");
     } catch (error) {}
   };
 
   const getData = async () => {
     try {
-      if (sessionStorage.getItem("auth") === "true") {
-        const token = sessionStorage.getItem("token");
-        return (tablon = await getTimeline(token));
+      if (reduxUser.credentials.token) {
+        return (tablon = await getTimeline(reduxUser.credentials.token));
       }
     } catch (error) {}
   };

@@ -104,16 +104,17 @@ export const getTimeline = async (token) => {
   }
 };
 
-export const likeFunction = async (postId) => {
+export const likeFunction = async (postId, token) => {
   const options = {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      Authorization: `Bearer ${token}`,
     },
   };
 
   try {
+
     const response = await fetch(rootUrl + "posts/like/" + postId, options);
 
     const data = await response.json();
