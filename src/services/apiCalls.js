@@ -95,8 +95,7 @@ export const getTimeline = async (token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-    console.log("GetTimeline");
-    // console.log(data.data)
+
     return data.data;
   } catch (error) {
     console.log("error1: " + error);

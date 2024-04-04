@@ -15,6 +15,7 @@ export const Profile = () => {
   const navigate = useNavigate();
   const reduxUser = useSelector(userData);
   const dispatch = useDispatch();
+  const [fileSelected, setFileSelected] = useState(false);
 
   const [firstProfile, setFirstProfile] = useState({
     userName: "",
@@ -40,6 +41,7 @@ export const Profile = () => {
   const [msgError, setMsgError] = useState("");
   const [disabled, setDisabled] = useState("disabled");
   const [firstFetch, setFirstFetch] = useState(false);
+  const [profileAvatar, setProfileAvatar] = useState("");
 
   useEffect(() => {
     if (!reduxUser.credentials.token) {
@@ -47,6 +49,7 @@ export const Profile = () => {
     }
     if (!firstFetch) {
       retrieveProfile();
+      setProfileAvatar(`${reduxUser.credentials.userName}profilephoto`);
     }
   }, []);
 
@@ -129,6 +132,14 @@ export const Profile = () => {
     navigate("/changepassword");
   };
 
+  const handleFileChange = (event) => {
+    if (event.target.files.length > 0) {
+      console.log(event.target.files[0]);
+      setFileSelected(true);
+    } else {
+      setFileSelected(false);
+    }
+  };
   return (
     <>
       {firstProfile.email === "" ? (
@@ -141,7 +152,8 @@ export const Profile = () => {
             {profile.photo ? (
               <img src={profile.photo} alt="profile" />
             ) : (
-              <img src={profilePhoto} alt="profile" />
+              // <img src={profilePhoto} alt="profile" />
+              <img src="http://localhost:4000/uploads/profile/2.png" alt="profile" />
             )}
             <div className="editButton">
               <form
@@ -152,8 +164,9 @@ export const Profile = () => {
                 <label for="photo">
                   <img id="cam" src={camera}></img>
                 </label>
-                <input id="photo" type="file" name="photo" />
-                <input type="submit" value="Subir foto" />
+                <input id="photo" type="file" name="photo" onChange={handleFileChange} />
+                <input type="hidden" name="username" value={firstProfile.userName} />
+                <input type="submit" value="Subir foto" className={fileSelected ? 'submitButton fileSelected' : 'submitButton'} />
               </form>
             </div>
           </article>
