@@ -128,3 +128,29 @@ export const likeFunction = async (postId, token) => {
     return error;
   }
 };
+
+export const handleFormSubmit = async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const options = {
+    method: "POST",
+    body: formData,
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}upload/`, options);
+
+    if (!response.ok) {
+      throw new Error('Error al subir el archivo');
+    }
+
+    const data = await response.json();
+
+    // Restablecer el campo de archivo
+    document.getElementById('photo').value = '';
+    return (`http://localhost:4000/${data.data}`);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};

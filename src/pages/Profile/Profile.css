@@ -23,6 +23,7 @@
 .profileCardDesign img {
   height: 10em;
   width: 10em;
+  border-radius: 50%;
 }
 .fieldEr {
   display: flex;

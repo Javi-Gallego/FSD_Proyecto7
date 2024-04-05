@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
-import { getProfile, updateProfile } from "../../services/apiCalls";
+import {
+  getProfile,
+  handleFormSubmit,
+  updateProfile,
+} from "../../services/apiCalls";
 import { validate } from "../../utils/functions";
 import { userData, login } from "../../app/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,6 +56,8 @@ export const Profile = () => {
       setProfileAvatar(`${reduxUser.credentials.userName}profilephoto`);
     }
   }, []);
+
+  useEffect(() => {}, [profile]);
 
   const inputHandler = (e) => {
     setProfile((prevState) => ({
@@ -134,12 +140,28 @@ export const Profile = () => {
 
   const handleFileChange = (event) => {
     if (event.target.files.length > 0) {
-      console.log(event.target.files[0]);
+      // console.log(event.target.files[0]);
       setFileSelected(true);
-    } else {
-      setFileSelected(false);
     }
   };
+  
+  const updateProfilePhoto = async (event) => {
+    try {
+      const response = await handleFormSubmit(event);
+      updateProfile(profile, reduxUser.credentials.token);
+      setProfile((prevState) => ({
+        ...prevState,
+        photo: response
+      }));
+      updateProfile(profile, reduxUser.credentials.token);
+      setFileSelected(false);
+      
+    } catch (error) {
+      console.log("error: ", error);
+    } 
+  };
+
+  console.log("profile: ", profile);
   return (
     <>
       {firstProfile.email === "" ? (
@@ -153,20 +175,44 @@ export const Profile = () => {
               <img src={profile.photo} alt="profile" />
             ) : (
               // <img src={profilePhoto} alt="profile" />
-              <img src="http://localhost:4000/uploads/profile/2.png" alt="profile" />
+              <img
+                src="http://localhost:4000/uploads/profile/dragonball.jpg"
+                alt="profile"
+              />
             )}
             <div className="editButton">
               <form
-                action="http://localhost:4000/API/upload/"
-                encType="multipart/form-data"
-                method="post"
+                // action="http://localhost:4000/API/upload/"
+                // encType="multipart/form-data"
+                // method="post"
+                onSubmit={updateProfilePhoto}
               >
-                <label for="photo">
+                <label htmlFor="photo">
                   <img id="cam" src={camera}></img>
                 </label>
-                <input id="photo" type="file" name="photo" onChange={handleFileChange} />
-                <input type="hidden" name="username" value={firstProfile.userName} />
-                <input type="submit" value="Subir foto" className={fileSelected ? 'submitButton fileSelected' : 'submitButton'} />
+                <input
+                  id="photo"
+                  type="file"
+                  name="photo"
+                  onChange={handleFileChange}
+                />
+                <input
+                  type="hidden"
+                  name="username"
+                  value={firstProfile.userName}
+                />
+                <input
+                  type="hidden"
+                  name="token"
+                  value={reduxUser.credentials.token}
+                />
+                <input
+                  type="submit"
+                  value="Subir foto"
+                  className={
+                    fileSelected ? "submitButton fileSelected" : "submitButton"
+                  }
+                />
               </form>
             </div>
           </article>
