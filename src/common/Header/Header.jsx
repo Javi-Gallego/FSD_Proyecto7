@@ -16,8 +16,7 @@ export function Header() {
             source={reduxUser.credentials.user.photo}
             destination="/profile"
           />
-          <HeaderLink title="Home" destination="/" />
-          <HeaderLink title="Timeline" destination="/timeline" />
+          <HeaderLink title="Lanzadera" destination="/timeline" />
           <LogoutLink title="logout" />
         </>
       ) : (

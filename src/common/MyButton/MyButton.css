@@ -34,7 +34,7 @@
 }
 
 .buttonDesign {
-  width: 11vw;
+  width: 12vw;
   height: 8vh;
 
   display: flex;
@@ -44,13 +44,28 @@
   border-radius: 0.3em;
   font-size: 1rem;
   font-weight: bold;
+  margin: 1em 0;
 
   cursor: pointer;
-  background-color: white;
+  background-color: rgb(249,246,237);
   color: rgb(31, 115, 240);
-  border: 0.18em solid rgb(31, 115, 240);
+  border: 0.18em solid rgb(31, 95, 206);
 }
 .buttonDesign:hover{
-    background-color: rgb(31, 115, 240);
-    color: white;
+    background-color: rgb(31, 95, 206);
+    color: rgb(249,246,237);
+}
+
+@media screen and (max-width: 720px) {
+  .buttonDesign {
+    width: 40vw;
+    height: 6vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .buttonDesign {
+    width: 50vw;
+    height: 6vh;
+  }
 }

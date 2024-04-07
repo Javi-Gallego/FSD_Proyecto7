@@ -1,7 +1,7 @@
-const rootUrl = "https://rocket-server.up.railway.app/api/";
-const rootUrlPhoto = "https://rocket-server.up.railway.app/";
-// const rootUrl = "http://localhost:4000/api/";
-// const rootUrlPhoto = "http://localhost:4000/";
+// const rootUrl = "https://rocket-server.up.railway.app/api/";
+// const rootUrlPhoto = "https://rocket-server.up.railway.app/";
+const rootUrl = "http://localhost:4000/api/";
+const rootUrlPhoto = "http://localhost:4000/";
 
 export const registerMe = async (credentials) => {
   const options = {
@@ -89,6 +89,8 @@ export const updateProfile = async (profile, token) => {
   };
 
   try {
+    console.log("body: " + options.body);
+    console.log("token: " + token);
     const response = await fetch(rootUrl + "users/profile", options);
 
     const data = await response.json();
@@ -96,7 +98,7 @@ export const updateProfile = async (profile, token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-
+    console.log("data: ", data.data);
     return data.data;
   } catch (error) {
     console.log("error1: " + error);

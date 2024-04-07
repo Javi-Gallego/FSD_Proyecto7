@@ -7,9 +7,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-image: url("../../img/SocialNetwork.jpg");
+  background-image: url("../../img/Rocketlogo.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: fit;
   background-position: center;
-  background-color: white;
+  background-color: rgb(249,246,237);
 }

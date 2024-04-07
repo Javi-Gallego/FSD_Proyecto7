@@ -13,6 +13,7 @@ import spinner from "../../img/rocket.gif";
 import camera from "../../assets/camera.svg";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
+import { ModalPrivacy } from "../../common/ModalPrivacy/ModalPrivacy";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -20,32 +21,40 @@ export const Profile = () => {
   const dispatch = useDispatch();
   const [fileSelected, setFileSelected] = useState(false);
   const [isValidPhoto, setIsValidPhoto] = useState("disabled");
-
-  const [firstProfile, setFirstProfile] = useState({
-    userName: "",
-    lastName: "",
-    email: "",
-    photo: "",
-  });
-
-  const [profile, setProfile] = useState({
-    userName: "",
-    lastName: "",
-    email: "",
-    photo: "",
-  });
-
-  const [profileError, setProfileError] = useState({
-    userNameError: "",
-    lastNameError: "",
-    emailError: "",
-    photoError: "",
-  });
-
   const [msgError, setMsgError] = useState("");
   const [disabled, setDisabled] = useState("disabled");
   const [firstFetch, setFirstFetch] = useState(false);
   const [profileAvatar, setProfileAvatar] = useState("");
+
+  const [firstProfile, setFirstProfile] = useState({
+    userName: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    photo: "",
+    isActive: "",
+    publicy: "",
+  });
+
+  const [profile, setProfile] = useState({
+    userName: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    photo: "",
+    isActive: "",
+    publicy: "",
+  });
+
+  const [profileError, setProfileError] = useState({
+    userNameError: "",
+    firstNameError: "",
+    lastNameError: "",
+    emailError: "",
+    photoError: "",
+    isActiveError: "",
+    publicyError: "",
+  });
 
   useEffect(() => {
     if (!reduxUser.credentials.token) {
@@ -76,6 +85,8 @@ export const Profile = () => {
         if (firstFetch === false) {
           setFirstProfile({
             userName: NewProfile.userName,
+            firstName: NewProfile.firstName,
+            lastName: NewProfile.lastName,
             email: NewProfile.email,
             isActive: NewProfile.is_active,
             privacy: NewProfile.privacy,
@@ -84,6 +95,8 @@ export const Profile = () => {
 
           setProfile({
             userName: NewProfile.userName,
+            firstName: NewProfile.firstName,
+            lastName: NewProfile.lastName,
             email: NewProfile.email,
             isActive: NewProfile.is_active,
             privacy: NewProfile.privacy,
@@ -109,23 +122,12 @@ export const Profile = () => {
     setDisabled("");
   };
 
-  const changeProfile = async (profile) => {
+  const changeProfile = async (updatedFields) => {
     try {
-      let updatedFields = {};
-
-      for (let field in firstProfile) {
-        if (firstProfile[field] !== profile[field] || field === "photo") {
-          updatedFields[field] = profile[field];
-        }
-      }
-
       const updated = await updateProfile(
         updatedFields,
-        reduxUser.credentials.token
-      );
+        reduxUser.credentials.token);
 
-      setFirstProfile(updated);
-      setProfile(updated);
       setDisabled("disabled");
       const updateCredentials = {
         ...reduxUser.credentials,
@@ -155,6 +157,7 @@ export const Profile = () => {
   };
 
   const updateProfilePhoto = async (event) => {
+    event.preventDefault();
     try {
       const response = await handleFormSubmit(event);
       setProfile((prevState) => {
@@ -162,7 +165,10 @@ export const Profile = () => {
           ...prevState,
           photo: response,
         };
-        changeProfile(updatedProfile);
+        const updatedFields = {
+          photo: response,
+        }
+        changeProfile(updatedFields);
         return updatedProfile;
       });
       setIsValidPhoto("disabled");
@@ -170,6 +176,24 @@ export const Profile = () => {
     } catch (error) {
       console.log("error: ", error);
     }
+  };
+  const updateProfileData = async () => {
+    const updatedProfile = {
+    ...(profile.firstName !== firstProfile.firstName && { firstName: profile.firstName }),
+    ...(profile.lastName !== firstProfile.lastName && { lastName: profile.lastName }),
+    };
+    console.log("updatedProfile: ", updatedProfile);
+    changeProfile(updatedProfile);
+  };
+  const updatePrivacy = async (privacy) => {
+    try {
+      const updatedFields = {
+        privacy: privacy,
+      };
+      await changeProfile(updatedFields, reduxUser.credentials.token);
+    } catch (error) {
+      console.log("error: ", error);
+    }  
   };
 
   return (
@@ -211,12 +235,28 @@ export const Profile = () => {
             </div>
           </article>
           <article className="profileCardDesign">
-            <p>
-              Nombre:
+            <div className="completeField">
+              <div className="fieldName">Usuario:</div>
+              <MyInput
+                type="text"
+                name="userName"
+                value={profile.userName || ""}
+                disabled="disabled"
+                onChangeFunction={inputHandler}
+                className={
+                  disabled === ""
+                    ? "fieldInputDesign enabledInput"
+                    : "fieldInputDesign"
+                }
+              />
+            </div>
+            <div className="fieldEr">{profileError.userNameError}</div>
+            <div className="completeField">
+              <div className="fieldName">Nombre:</div>
               <MyInput
                 type="text"
                 name="firstName"
-                value={profile.userName || ""}
+                value={profile.firstName || ""}
                 disabled={disabled}
                 onChangeFunction={inputHandler}
                 className={
@@ -225,10 +265,10 @@ export const Profile = () => {
                     : "fieldInputDesign"
                 }
               />
-            </p>
-            {/* <div className="fieldEr">{profileError.userNameError}</div> */}
-            <p>
-              Apellido:
+            </div>
+            <div className="fieldEr">{profileError.firstNameError}</div>
+            <div className="completeField">
+            <div className="fieldName">Apellido:</div>
               <MyInput
                 type="text"
                 name="lastName"
@@ -241,15 +281,15 @@ export const Profile = () => {
                     : "fieldInputDesign"
                 }
               />
-            </p>
+            </div>
             <div className="fieldEr">{profileError.lastNameError}</div>
-            <p>
-              Email:
+            <div className="completeField">
+            <div className="fieldName">Email:</div>
               <MyInput
                 type="email"
                 name="email"
                 value={profile.email || ""}
-                disabled={disabled}
+                disabled="disabled"
                 onChangeFunction={inputHandler}
                 className={
                   disabled === ""
@@ -257,22 +297,31 @@ export const Profile = () => {
                     : "fieldInputDesign"
                 }
               />
-            </p>
+            </div>
             <div className="fieldEr">{profileError.emailError}</div>
+            <ModalPrivacy privacy={firstProfile.publicy} token={reduxUser.credentials.token} />
           </article>
           <article className="profileCardDesign">
             <MyButton
-              text={disabled === "" ? "Guardar" : "Edit"}
-              functionClick={disabled === "" ? changeProfile : updateDisabled}
+              text={disabled === "" ? "Guardar" : "Editar"}
+              functionClick={disabled === "" ? updateProfileData : updateDisabled}
               currentClass={
                 disabled === "" ? "buttonDesign update" : "buttonDesign"
               }
             />
-            <div className="separator"></div>
             <MyButton
               text="Cambiar contraseña"
               functionClick={changePass}
               currentClass="buttonDesign"
+            />
+            <MyButton
+              text={firstProfile.isActive === true ? "Desactivar" : "Activar"}
+              functionClick={changePass}
+              currentClass={
+                firstProfile.isActive === true
+                  ? "buttonInactive"
+                  : "buttonActive"
+              }
             />
           </article>
         </div>

@@ -17,23 +17,38 @@
   width: 70vw;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
 
   font-weight: bold;
   font-size: 1.1rem;
-  border: 0.2em solid rgb(96, 154, 252);
-  background-color: white;
+  border-bottom: 0.2em solid rgb(96, 154, 252);
+  background-color: rgb(249,246,237);
   margin: 2em;
-  padding: 1em;
+  padding: 1em 0;
 }
 
 .mensajeDesign:hover {
   background-color: rgb(201, 210, 228);
 }
+.postAuthorPhoto{
+  width: 12vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em;
+  border-radius: 50%;
+}
+.postInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
 
+}
 .minorText {
   font-size: 0.8rem;
   padding: 1em 2em;

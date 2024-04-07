@@ -20,6 +20,7 @@ export const Timeline = () => {
       if (reduxUser.credentials.token) {
         const token = reduxUser.credentials.token;
         const currentTimeline = await getTimeline(token);
+        console.log("currentTimeline", currentTimeline);
         setMsg(currentTimeline);
       }
     } catch (error) {}

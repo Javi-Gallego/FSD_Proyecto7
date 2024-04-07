@@ -2,6 +2,8 @@
   height: auto;
   min-height: 90vh;
   width: 100vw;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -12,7 +14,9 @@
 }
 .profileCardDesign {
   height: 28em;
-  width: 15em;
+  width: 18em;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,14 +29,21 @@
   width: 10em;
   border-radius: 50%;
 }
+.completeField{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.fieldName{
+  width: 4.5em;
+}
 .fieldEr {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0.7em;
-  height: 1.2em;
+  height: 0.9em;
   color: red;
-  font-size: 1.1rem;
+  font-size: 0.7rem;
   font-weight: bold;
   background-color: transparent;
 }
@@ -43,8 +54,8 @@
   align-items: center;
 }
 .fieldInputDesign {
-  width: 15em;
-  height: 2em;
+  width: 12.5em;
+  height: 1.2em;
   text-align: center;
   border: 0.2em solid rgb(249,246,237);
   background-color: rgb(249,246,237);
@@ -56,7 +67,7 @@
   border: 0.2em solid red;
 }
 .enabledInput {
-  background-color: rgb(96, 154, 252);
+  background-color: rgb(143, 184, 254);
   color: red;
 }
 .enabledInput:focus {
@@ -78,6 +89,46 @@ label {
   height: auto;
   width: 2em;
 }
+select {
+  width: 6em;
+  height: 2em;
+  border-radius: 0.3em;
+  border: 0.2em solid rgb(31, 95, 206);
+  background-color: rgb(249,246,237);
+  font-size: 1rem;
+  color: rgb(31, 95, 206);
+  margin: 1em 0 ;
+}
+.buttonActive{
+  height: 2em;
+  width: 6em;
+  font-weight: bold;
+  background-color: rgb(249,246,237);
+  color: rgb(31, 95, 206);
+  border: 0.2em solid rgb(31, 95, 206);
+  border-radius: 0.3em;
+  cursor: pointer;
+  margin: 1em 0 ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.buttonInactive{
+  height: 2em;
+  width: 6em;
+  font-weight: bold;
+  background-color: rgb(249,246,237);
+  color: rgb(180, 28, 28);
+  border: 0.2em solid rgb(180, 28, 28);
+  border-radius: 0.3em;
+  cursor: pointer;
+  margin: 1em 0 ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .submitButton{
   height: 2.5em;
   width: 6em;
@@ -94,4 +145,78 @@ label {
 }
 .fileSelected{
   background-color: salmon;
+}
+
+@media screen and (max-width: 480px) {
+  .profileDesign {
+    height: auto;
+    min-height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(249,246,237);
+    font-weight: bold;
+  }
+  .profileCardDesign {
+    height: 28em;
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(249,246,237);
+    color: rgb(31, 115, 240);
+  }
+  .fieldEr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0.9em;
+    color: red;
+    font-size: 0.8rem;
+    font-weight: bold;
+    background-color: transparent;
+  }
+  .editButton form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .fieldInputDesign {
+    width: 14em;
+    height: 1.3em;
+    text-align: center;
+    border: 0.2em solid rgb(249,246,237);
+    background-color: rgb(249,246,237);
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgb(31, 95, 206);
+  }
+  .fieldInputDesignError {
+    border: 0.2em solid red;
+  }
+  .enabledInput {
+    background-color: rgb(143, 184, 254);
+    color: red;
+  }
+  .enabledInput:focus {
+    border: 0.2em solid rgb(217, 202, 34);
+    outline: none;
+  }
+  .profileCardDesign img {
+    height: 13em;
+    width: 13em;
+    border-radius: 50%;
+  }
+  #cam{
+    height: auto;
+    width: 3em;
+  }
+  .submitButton{
+    height: 3em;
+    width: 10em;
+  }
 }

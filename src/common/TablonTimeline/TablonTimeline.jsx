@@ -62,53 +62,56 @@ export const TablonTimeline = ({ tablon }) => {
         {usedTablon &&
           usedTablon.map((post, index) => (
             <div key={`message${index}`} className="mensajeDesign">
-              {post.authorId.userName} <br />"{post.message}" <br />
-              <div key={`likescomments${index}`} className="minorText">
-                <img
-                  src={likeIcon}
-                  onClick={() => {
-                    handleLikeClick(post._id);
-                  }}
-                />
-                Likes({post.likes.length}):
-                {post.likes &&
-                  post.likes.map((like, indexlike) =>
-                    likeString.concat(like.userName + " ")
-                  )}
-                <br />
-                <br />
-                <img
-                  src={commentIcon}
-                  onClick={() => {
-                    handleCommentClick(post._id, index);
-                  }}
-                />
-                Comentarios({post.comments.length}):
-                {post.comments &&
-                  post.comments.map((comment, indexcomment) => (
-                    <div
-                      className="comentary"
-                      key={`commentary${indexcomment}`}
-                    >
-                      {comment.commentatorId.userName} : {comment.commentary}{" "}
-                    </div>
-                  ))}
-                <div
-                  id={`blockComment${index}`}
-                  className="addComment invisible"
-                >
-                  <MyInput
-                    type="text"
-                    name="comment"
-                    placeholder="Añade un comentario al post"
-                    value={commentary.comment || ""}
-                    functionChange={inputHandler}
+              <img className="postAuthorPhoto" src={post.authorId.photo}></img>
+              <div className="postInfo">
+                @{post.authorId.userName} <br />"{post.message}" <br />
+                <div key={`likescomments${index}`} className="minorText">
+                  <img
+                    src={likeIcon}
+                    onClick={() => {
+                      handleLikeClick(post._id);
+                    }}
                   />
-                  {/* <CustomButton 
-                                    text="Enviar"
-                                    functionClick={sendComment}
-                                    currentClass="buttonDesign"
-                                /> */}
+                  Likes({post.likes.length}):
+                  {post.likes &&
+                    post.likes.map((like, indexlike) =>
+                      likeString.concat(like.userName + " ")
+                    )}
+                  <br />
+                  <br />
+                  <img
+                    src={commentIcon}
+                    onClick={() => {
+                      handleCommentClick(post._id, index);
+                    }}
+                  />
+                  Comentarios({post.comments.length}):
+                  {post.comments &&
+                    post.comments.map((comment, indexcomment) => (
+                      <div className="comentary"
+                        key={`commentary${indexcomment}`} >
+                        <img src={comment.commentatorId.photo}></img>
+                          {comment.commentatorId.userName}
+                         : {comment.commentary}{" "}
+                      </div>
+                    ))}
+                  <div
+                    id={`blockComment${index}`}
+                    className="addComment invisible"
+                  >
+                    <MyInput
+                      type="text"
+                      name="comment"
+                      placeholder="Añade un comentario al post"
+                      value={commentary.comment || ""}
+                      onChangeFunction={inputHandler}
+                    />
+                    {/* <CustomButton
+                                      text="Enviar"
+                                      functionClick={sendComment}
+                                      currentClass="buttonDesign"
+                                  /> */}
+                  </div>
                 </div>
               </div>
             </div>
