@@ -7,7 +7,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgb(249,246,237);
   font-weight: bold;
 }
 .profileCardDesign {
@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgb(249,246,237);
   color: rgb(31, 115, 240);
 }
 .profileCardDesign img {
@@ -46,8 +46,8 @@
   width: 15em;
   height: 2em;
   text-align: center;
-  border: 0.2em solid white;
-  background-color: white;
+  border: 0.2em solid rgb(249,246,237);
+  background-color: rgb(249,246,237);
   font-size: 1rem;
   font-weight: bold;
   color: rgb(31, 95, 206);
@@ -74,21 +74,6 @@ label {
   cursor: pointer;
 }
 
-/* input[type="submit"] {
-  height: 2.5em;
-  width: 6em;
-  font-weight: bold;
-  background-color: white;
-  color: rgb(31, 95, 206);
-  border: 0.2em solid rgb(31, 95, 206);
-  border-radius: 0.3em;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: rgb(31, 95, 206);
-  color: white;
-} */
 #cam{
   height: auto;
   width: 2em;
@@ -97,7 +82,7 @@ input[type="submit"]:hover {
   height: 2.5em;
   width: 6em;
   font-weight: bold;
-  background-color: white;
+  background-color: rgb(249,246,237);
   color: rgb(31, 95, 206);
   border: 0.2em solid rgb(31, 95, 206);
   border-radius: 0.3em;

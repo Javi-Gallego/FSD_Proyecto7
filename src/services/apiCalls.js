@@ -1,5 +1,7 @@
-// const rootUrl = "https://socialnetwork-dev-stbs.2.ie-1.fl0.io/api/";
-const rootUrl = "http://localhost:4000/api/";
+const rootUrl = "https://rocket-server.up.railway.app/api/";
+const rootUrlPhoto = "https://rocket-server.up.railway.app/";
+// const rootUrl = "http://localhost:4000/api/";
+// const rootUrlPhoto = "http://localhost:4000/";
 
 export const registerMe = async (credentials) => {
   const options = {
@@ -174,7 +176,8 @@ export const handleFormSubmit = async (event) => {
 
     // Restablecer el campo de archivo
     document.getElementById('photo').value = '';
-    return (`http://localhost:4000/${data.data}`);
+
+    return (`${rootUrlPhoto}${data.data}`);
   } catch (error) {
     console.error('Error:', error);
   }

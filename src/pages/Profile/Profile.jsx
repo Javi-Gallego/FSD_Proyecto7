@@ -10,7 +10,6 @@ import { validate, validatePhoto } from "../../utils/functions";
 import { userData, login } from "../../app/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import spinner from "../../img/rocket.gif";
-import profilePhoto from "../../img/userphoto.png";
 import camera from "../../assets/camera.svg";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
@@ -128,6 +127,11 @@ export const Profile = () => {
       setFirstProfile(updated);
       setProfile(updated);
       setDisabled("disabled");
+      const updateCredentials = {
+        ...reduxUser.credentials,
+        user: updated,
+      };
+      dispatch(login({ credentials: updateCredentials }));
     } catch (error) {}
   };
 
@@ -177,15 +181,7 @@ export const Profile = () => {
       ) : (
         <div className="profileDesign">
           <article className="profileCardDesign">
-            {/* {profile.photo ? ( */}
             <img src={profile.photo} alt="profile" />
-            {/* ) : (
-              // <img src={profilePhoto} alt="profile" />
-              <img
-                src="http://localhost:4000/uploads/profile/dragonball.jpg"
-                alt="profile"
-              />
-            )} */}
             <div className="editButton">
               <form onSubmit={updateProfilePhoto}>
                 <label htmlFor="photo">

@@ -22,7 +22,7 @@
   position: absolute;
   top: 0;
   left: -0.2em;
-  background: white;
+  background: rgb(249,246,237);
   height: 1em;
   overflow: hidden;
   transition: all 300ms ease;
