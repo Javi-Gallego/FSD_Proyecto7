@@ -6,7 +6,7 @@ import {
   handleFormSubmit,
   updateProfile,
 } from "../../services/apiCalls";
-import { validate } from "../../utils/functions";
+import { validate, validatePhoto } from "../../utils/functions";
 import { userData, login } from "../../app/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import spinner from "../../img/rocket.gif";
@@ -20,6 +20,7 @@ export const Profile = () => {
   const reduxUser = useSelector(userData);
   const dispatch = useDispatch();
   const [fileSelected, setFileSelected] = useState(false);
+  const [isValidPhoto, setIsValidPhoto] = useState("disabled");
 
   const [firstProfile, setFirstProfile] = useState({
     userName: "",
@@ -72,13 +73,14 @@ export const Profile = () => {
     try {
       if (profile.email === "") {
         const NewProfile = await getProfile(reduxUser.credentials.token);
-        console.log(NewProfile.userName);
+
         if (firstFetch === false) {
           setFirstProfile({
             userName: NewProfile.userName,
             email: NewProfile.email,
             isActive: NewProfile.is_active,
             privacy: NewProfile.privacy,
+            photo: NewProfile.photo,
           });
 
           setProfile({
@@ -86,20 +88,7 @@ export const Profile = () => {
             email: NewProfile.email,
             isActive: NewProfile.is_active,
             privacy: NewProfile.privacy,
-          });
-        } else {
-          setFirstProfile({
-            userName: profile.userName,
-            email: profile.email,
-            isActive: profile.is_active,
-            privacy: profile.privacy,
-          });
-
-          setProfile({
-            userName: NewProfile.userName,
-            email: NewProfile.email,
-            isActive: NewProfile.is_active,
-            privacy: NewProfile.privacy,
+            photo: NewProfile.photo,
           });
         }
 
@@ -121,15 +110,23 @@ export const Profile = () => {
     setDisabled("");
   };
 
-  const changeProfile = async () => {
+  const changeProfile = async (profile) => {
     try {
       let updatedFields = {};
+
       for (let field in firstProfile) {
-        if (firstProfile[field] !== profile[field]) {
+        if (firstProfile[field] !== profile[field] || field === "photo") {
           updatedFields[field] = profile[field];
         }
       }
-      const updated = await updateProfile(reduxUser.credentials.token);
+
+      const updated = await updateProfile(
+        updatedFields,
+        reduxUser.credentials.token
+      );
+
+      setFirstProfile(updated);
+      setProfile(updated);
       setDisabled("disabled");
     } catch (error) {}
   };
@@ -140,28 +137,37 @@ export const Profile = () => {
 
   const handleFileChange = (event) => {
     if (event.target.files.length > 0) {
-      // console.log(event.target.files[0]);
-      setFileSelected(true);
+      const file = event.target.files[0];
+      const error = validatePhoto(file);
+      setProfileError((prevState) => ({
+        ...prevState,
+        photoError: error,
+      }));
+      if (error === "") {
+        setIsValidPhoto("");
+        setFileSelected(true);
+      }
     }
   };
-  
+
   const updateProfilePhoto = async (event) => {
     try {
       const response = await handleFormSubmit(event);
-      updateProfile(profile, reduxUser.credentials.token);
-      setProfile((prevState) => ({
-        ...prevState,
-        photo: response
-      }));
-      updateProfile(profile, reduxUser.credentials.token);
+      setProfile((prevState) => {
+        const updatedProfile = {
+          ...prevState,
+          photo: response,
+        };
+        changeProfile(updatedProfile);
+        return updatedProfile;
+      });
+      setIsValidPhoto("disabled");
       setFileSelected(false);
-      
     } catch (error) {
       console.log("error: ", error);
-    } 
+    }
   };
 
-  console.log("profile: ", profile);
   return (
     <>
       {firstProfile.email === "" ? (
@@ -171,22 +177,17 @@ export const Profile = () => {
       ) : (
         <div className="profileDesign">
           <article className="profileCardDesign">
-            {profile.photo ? (
-              <img src={profile.photo} alt="profile" />
-            ) : (
+            {/* {profile.photo ? ( */}
+            <img src={profile.photo} alt="profile" />
+            {/* ) : (
               // <img src={profilePhoto} alt="profile" />
               <img
                 src="http://localhost:4000/uploads/profile/dragonball.jpg"
                 alt="profile"
               />
-            )}
+            )} */}
             <div className="editButton">
-              <form
-                // action="http://localhost:4000/API/upload/"
-                // encType="multipart/form-data"
-                // method="post"
-                onSubmit={updateProfilePhoto}
-              >
+              <form onSubmit={updateProfilePhoto}>
                 <label htmlFor="photo">
                   <img id="cam" src={camera}></img>
                 </label>
@@ -202,18 +203,15 @@ export const Profile = () => {
                   value={firstProfile.userName}
                 />
                 <input
-                  type="hidden"
-                  name="token"
-                  value={reduxUser.credentials.token}
-                />
-                <input
                   type="submit"
                   value="Subir foto"
                   className={
                     fileSelected ? "submitButton fileSelected" : "submitButton"
                   }
+                  disabled={isValidPhoto}
                 />
               </form>
+              <div className="fieldEr">{profileError.photoError}</div>
             </div>
           </article>
           <article className="profileCardDesign">

@@ -64,7 +64,7 @@ export const getProfile = async (token) => {
     const response = await fetch(rootUrl + "users/profile", options);
 
     const data = await response.json();
-    console.log(data.data);
+    
     if (!data.success) {
       throw new Error(data.message);
     }
@@ -76,7 +76,31 @@ export const getProfile = async (token) => {
   }
 };
 
-export const updateProfile = async (profile, token) => {};
+export const updateProfile = async (profile, token) => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(profile),
+  };
+
+  try {
+    const response = await fetch(rootUrl + "users/profile", options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};
 
 export const getTimeline = async (token) => {
   const options = {
@@ -133,6 +157,7 @@ export const handleFormSubmit = async (event) => {
   event.preventDefault();
 
   const formData = new FormData(event.target);
+
   const options = {
     method: "POST",
     body: formData,
