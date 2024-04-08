@@ -89,8 +89,6 @@ export const updateProfile = async (profile, token) => {
   };
 
   try {
-    console.log("body: " + options.body);
-    console.log("token: " + token);
     const response = await fetch(rootUrl + "users/profile", options);
 
     const data = await response.json();
@@ -98,7 +96,7 @@ export const updateProfile = async (profile, token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-    console.log("data: ", data.data);
+
     return data.data;
   } catch (error) {
     console.log("error1: " + error);
@@ -182,5 +180,30 @@ export const handleFormSubmit = async (event) => {
     return (`${rootUrlPhoto}${data.data}`);
   } catch (error) {
     console.error('Error:', error);
+  }
+};
+
+export const deactivateUser = async (token) => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(rootUrl + "users/deactivate", options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
   }
 };

@@ -15,24 +15,24 @@ export const ModalPrivacy = (privacy) => {
     }
     setIsOpen(!isOpen);
   };
-  const changePrivacy = async () => {
+  const changePrivacy = async (newvalue) => {
     try {
       const newPolicy = {
-        privacy: publicy,
+        privacy: newvalue,
       };
       await updateProfile(newPolicy, reduxUser.credentials.token);
-
       toggleModal();
     } catch (error) {
       console.log("errorModal: " + error);
     }
   };
+  console.log("publicy: ", publicy);
   return (
     <div>
       <select
         name="isValid"
         id="isValid"
-        value={publicy}
+        value={publicy === "public" ? "public" : "private"}
         onChange={toggleModal}
       >
         <option value="public">Público</option>

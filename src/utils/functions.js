@@ -23,6 +23,9 @@ export const validate = (type, value) => {
       return "";
 
     case "password":
+    case "newPass":
+    case "repeatPass":
+    case "currentPass":
     case "contraseña":
       const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,14}$/;
       if (!passwordRegex.test(value)) {

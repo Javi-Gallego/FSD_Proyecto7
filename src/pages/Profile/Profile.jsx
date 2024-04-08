@@ -14,6 +14,8 @@ import camera from "../../assets/camera.svg";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { ModalPrivacy } from "../../common/ModalPrivacy/ModalPrivacy";
+import { ModalActive } from "../../common/ModalActive/ModalActive";
+import { ModalChangePassword } from "../../common/ModalChangePassoword/ModalChangePassword";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ export const Profile = () => {
     email: "",
     photo: "",
     isActive: "",
-    publicy: "",
+    privacy: "",
   });
 
   const [profile, setProfile] = useState({
@@ -43,7 +45,7 @@ export const Profile = () => {
     email: "",
     photo: "",
     isActive: "",
-    publicy: "",
+    privacy: "",
   });
 
   const [profileError, setProfileError] = useState({
@@ -81,7 +83,7 @@ export const Profile = () => {
     try {
       if (profile.email === "") {
         const NewProfile = await getProfile(reduxUser.credentials.token);
-
+console.log("NewProfile: ", NewProfile)
         if (firstFetch === false) {
           setFirstProfile({
             userName: NewProfile.userName,
@@ -136,11 +138,8 @@ export const Profile = () => {
       dispatch(login({ credentials: updateCredentials }));
     } catch (error) {}
   };
-
   const changePass = () => {
-    navigate("/changepassword");
   };
-
   const handleFileChange = (event) => {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -155,7 +154,6 @@ export const Profile = () => {
       }
     }
   };
-
   const updateProfilePhoto = async (event) => {
     event.preventDefault();
     try {
@@ -185,17 +183,6 @@ export const Profile = () => {
     console.log("updatedProfile: ", updatedProfile);
     changeProfile(updatedProfile);
   };
-  const updatePrivacy = async (privacy) => {
-    try {
-      const updatedFields = {
-        privacy: privacy,
-      };
-      await changeProfile(updatedFields, reduxUser.credentials.token);
-    } catch (error) {
-      console.log("error: ", error);
-    }  
-  };
-
   return (
     <>
       {firstProfile.email === "" ? (
@@ -299,7 +286,7 @@ export const Profile = () => {
               />
             </div>
             <div className="fieldEr">{profileError.emailError}</div>
-            <ModalPrivacy privacy={firstProfile.publicy} token={reduxUser.credentials.token} />
+            <ModalPrivacy privacy={firstProfile.privacy} />
           </article>
           <article className="profileCardDesign">
             <MyButton
@@ -309,20 +296,8 @@ export const Profile = () => {
                 disabled === "" ? "buttonDesign update" : "buttonDesign"
               }
             />
-            <MyButton
-              text="Cambiar contraseña"
-              functionClick={changePass}
-              currentClass="buttonDesign"
-            />
-            <MyButton
-              text={firstProfile.isActive === true ? "Desactivar" : "Activar"}
-              functionClick={changePass}
-              currentClass={
-                firstProfile.isActive === true
-                  ? "buttonInactive"
-                  : "buttonActive"
-              }
-            />
+            <ModalChangePassword />
+            <ModalActive active={true} />
           </article>
         </div>
       )}
