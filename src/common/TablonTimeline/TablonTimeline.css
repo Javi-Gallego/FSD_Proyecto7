@@ -94,3 +94,15 @@
 .invisible {
   display: none;
 }
+
+@media screen and (max-width: 480px) {
+  .tablonDesign{
+    margin: 0.1em;
+    padding: 0.2em;
+  }
+  .postImage{
+    width: 75%;
+    height: auto;
+    margin: 0.5em 0;
+  }
+}
