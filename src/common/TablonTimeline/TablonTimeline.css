@@ -34,7 +34,7 @@
   background-color: rgb(201, 210, 228);
 }
 .postAuthorPhoto{
-  width: 12vw;
+  width: 8vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,13 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
+  padding: 0 1em;
 
+}
+.postImage{
+  width: 20em;
+  height: auto;
+  margin: 0.5em 0;
 }
 .minorText {
   font-size: 0.8rem;

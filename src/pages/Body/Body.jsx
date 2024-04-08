@@ -4,6 +4,8 @@ import { Register } from "../Register/Register";
 import { Login } from "../Login/Login";
 import { Profile } from "../Profile/Profile";
 import { Timeline } from "../Timeline/Timeline";
+import { OwnPosts } from "../OwnPosts/OwnPosts";
+import { SendMessage } from "../SendMessage/SendMessage";
 
 export const Body = () => {
   return (
@@ -13,7 +15,9 @@ export const Body = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/timeline" element={<Timeline />} />
-      <Route path="*" element={<Navigate to="/" />} replace/>
+      <Route path="/ownposts" element={<OwnPosts />} />
+      <Route path="/sendmessage" element={<SendMessage />} />
+      <Route path="*" element={<Navigate to="/" />} replace />
     </Routes>
   );
 };

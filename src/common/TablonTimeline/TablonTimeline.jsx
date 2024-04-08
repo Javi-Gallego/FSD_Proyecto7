@@ -64,7 +64,9 @@ export const TablonTimeline = ({ tablon }) => {
             <div key={`message${index}`} className="mensajeDesign">
               <img className="postAuthorPhoto" src={post.authorId.photo}></img>
               <div className="postInfo">
-                @{post.authorId.userName} <br />"{post.message}" <br />
+                @{post.authorId.userName} <br />
+                {post.photoUrl && <img className="postImage" src={post.photoUrl} alt="Imagen post"></img>}
+                "{post.message}" <br />
                 <div key={`likescomments${index}`} className="minorText">
                   <img
                     src={likeIcon}
@@ -72,20 +74,24 @@ export const TablonTimeline = ({ tablon }) => {
                       handleLikeClick(post._id);
                     }}
                   />
-                  Likes({post.likes.length}):
+                  Likes({post.likes ? post.likes.length : 0}):
                   {post.likes &&
                     post.likes.map((like, indexlike) =>
                       likeString.concat(like.userName + " ")
                     )}
+                    <img
+                    src={commentIcon}
+                  />
+                    Comentarios({post.comments ? post.comments.length : 0})
                   <br />
                   <br />
-                  <img
+                  {/* <img
                     src={commentIcon}
                     onClick={() => {
                       handleCommentClick(post._id, index);
                     }}
                   />
-                  Comentarios({post.comments.length}):
+                  Comentarios({post.comments ? post.comments.length : 0}):
                   {post.comments &&
                     post.comments.map((comment, indexcomment) => (
                       <div className="comentary"
@@ -105,13 +111,13 @@ export const TablonTimeline = ({ tablon }) => {
                       placeholder="Añade un comentario al post"
                       value={commentary.comment || ""}
                       onChangeFunction={inputHandler}
-                    />
+                    /> */}
                     {/* <CustomButton
                                       text="Enviar"
                                       functionClick={sendComment}
                                       currentClass="buttonDesign"
                                   /> */}
-                  </div>
+                  {/* </div> */}
                 </div>
               </div>
             </div>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { TablonTimeline } from "../../common/TablonTimeline/TablonTimeline";
-import { getTimeline } from "../../services/apiCalls";
-import "./Timeline.css";
+import { getOwnPosts } from "../../services/apiCalls";
+import "./OwnPosts.css";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
 import { SendMessageButton } from "../../common/SendMessageButton/SendMessageButton";
 
-export const Timeline = () => {
+export const OwnPosts = () => {
   const reduxUser = useSelector(userData);
   const [msg, setMsg] = useState({});
 
@@ -20,15 +20,15 @@ export const Timeline = () => {
     try {
       if (reduxUser.credentials.token) {
         const token = reduxUser.credentials.token;
-        const currentTimeline = await getTimeline(token);
+        const ownPosts = await getOwnPosts(token);
 
-        setMsg(currentTimeline);
+        setMsg(ownPosts);
       }
     } catch (error) {}
   };
 
   return (
-    <div className="timelineDesign">
+    <div className="ownPostsDesign">
       {Object.keys(msg).length !== 0 && <TablonTimeline tablon={msg} />}
       <SendMessageButton />
     </div>

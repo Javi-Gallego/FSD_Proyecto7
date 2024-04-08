@@ -8,12 +8,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: rgb(249,246,237);
   font-weight: bold;
 }
 .profileCardDesign {
-  height: 28em;
+  height: 17em;
   width: 18em;
   margin: 0;
   padding: 0;
@@ -158,9 +158,10 @@ select {
     align-items: center;
     background-color: rgb(249,246,237);
     font-weight: bold;
+    padding: 0.5em 0 0 0;
   }
   .profileCardDesign {
-    height: 28em;
+    height: 15em;
     width: 15em;
     display: flex;
     flex-direction: column;
@@ -207,16 +208,16 @@ select {
     outline: none;
   }
   .profileCardDesign img {
-    height: 13em;
-    width: 13em;
+    height: 10em;
+    width: 10em;
     border-radius: 50%;
   }
   #cam{
     height: auto;
-    width: 3em;
+    width: 2.5em;
   }
   .submitButton{
-    height: 3em;
-    width: 10em;
+    height: 2.5em;
+    width: 9em;
   }
 }

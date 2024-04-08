@@ -15,6 +15,7 @@ export const ModalPrivacy = (privacy) => {
     }
     setIsOpen(!isOpen);
   };
+  
   const changePrivacy = async (newvalue) => {
     try {
       const newPolicy = {
@@ -26,7 +27,7 @@ export const ModalPrivacy = (privacy) => {
       console.log("errorModal: " + error);
     }
   };
-  console.log("publicy: ", publicy);
+
   return (
     <div>
       <select

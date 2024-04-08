@@ -16,6 +16,7 @@ import { MyButton } from "../../common/MyButton/MyButton";
 import { ModalPrivacy } from "../../common/ModalPrivacy/ModalPrivacy";
 import { ModalActive } from "../../common/ModalActive/ModalActive";
 import { ModalChangePassword } from "../../common/ModalChangePassoword/ModalChangePassword";
+import { SendMessageButton } from "../../common/SendMessageButton/SendMessageButton";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -83,7 +84,7 @@ export const Profile = () => {
     try {
       if (profile.email === "") {
         const NewProfile = await getProfile(reduxUser.credentials.token);
-console.log("NewProfile: ", NewProfile)
+
         if (firstFetch === false) {
           setFirstProfile({
             userName: NewProfile.userName,
@@ -128,7 +129,8 @@ console.log("NewProfile: ", NewProfile)
     try {
       const updated = await updateProfile(
         updatedFields,
-        reduxUser.credentials.token);
+        reduxUser.credentials.token
+      );
 
       setDisabled("disabled");
       const updateCredentials = {
@@ -138,8 +140,7 @@ console.log("NewProfile: ", NewProfile)
       dispatch(login({ credentials: updateCredentials }));
     } catch (error) {}
   };
-  const changePass = () => {
-  };
+
   const handleFileChange = (event) => {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -154,6 +155,7 @@ console.log("NewProfile: ", NewProfile)
       }
     }
   };
+
   const updateProfilePhoto = async (event) => {
     event.preventDefault();
     try {
@@ -165,7 +167,7 @@ console.log("NewProfile: ", NewProfile)
         };
         const updatedFields = {
           photo: response,
-        }
+        };
         changeProfile(updatedFields);
         return updatedProfile;
       });
@@ -175,14 +177,19 @@ console.log("NewProfile: ", NewProfile)
       console.log("error: ", error);
     }
   };
+
   const updateProfileData = async () => {
     const updatedProfile = {
-    ...(profile.firstName !== firstProfile.firstName && { firstName: profile.firstName }),
-    ...(profile.lastName !== firstProfile.lastName && { lastName: profile.lastName }),
+      ...(profile.firstName !== firstProfile.firstName && {
+        firstName: profile.firstName,
+      }),
+      ...(profile.lastName !== firstProfile.lastName && {
+        lastName: profile.lastName,
+      }),
     };
-    console.log("updatedProfile: ", updatedProfile);
     changeProfile(updatedProfile);
   };
+  
   return (
     <>
       {firstProfile.email === "" ? (
@@ -255,7 +262,7 @@ console.log("NewProfile: ", NewProfile)
             </div>
             <div className="fieldEr">{profileError.firstNameError}</div>
             <div className="completeField">
-            <div className="fieldName">Apellido:</div>
+              <div className="fieldName">Apellido:</div>
               <MyInput
                 type="text"
                 name="lastName"
@@ -271,7 +278,7 @@ console.log("NewProfile: ", NewProfile)
             </div>
             <div className="fieldEr">{profileError.lastNameError}</div>
             <div className="completeField">
-            <div className="fieldName">Email:</div>
+              <div className="fieldName">Email:</div>
               <MyInput
                 type="email"
                 name="email"
@@ -291,7 +298,9 @@ console.log("NewProfile: ", NewProfile)
           <article className="profileCardDesign">
             <MyButton
               text={disabled === "" ? "Guardar" : "Editar"}
-              functionClick={disabled === "" ? updateProfileData : updateDisabled}
+              functionClick={
+                disabled === "" ? updateProfileData : updateDisabled
+              }
               currentClass={
                 disabled === "" ? "buttonDesign update" : "buttonDesign"
               }
@@ -299,6 +308,7 @@ console.log("NewProfile: ", NewProfile)
             <ModalChangePassword />
             <ModalActive active={true} />
           </article>
+          <SendMessageButton />
         </div>
       )}
     </>
