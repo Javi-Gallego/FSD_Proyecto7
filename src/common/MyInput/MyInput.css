@@ -15,3 +15,17 @@
   box-shadow: 1px 1px 5px 1px rgb(31, 115, 240);
   outline: none;
 }
+
+@media screen and (max-width: 864px) {
+  .authInputDesign {
+    width: 50vw;
+    height: 4.5vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .buttonDesign {
+    width: 50vw;
+    height: 6vh;
+  }
+}
