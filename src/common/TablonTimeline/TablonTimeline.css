@@ -26,12 +26,19 @@
   font-size: 1.1rem;
   border-bottom: 0.2em solid rgb(96, 154, 252);
   background-color: rgb(249,246,237);
-  margin: 2em;
-  padding: 1em 0;
+  margin: 1em 2em;
+  padding: 0.4em 0;
 }
 
 .mensajeDesign:hover {
   background-color: rgb(201, 210, 228);
+}
+.authMessage{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.2em;
 }
 .postAuthorPhoto{
   width: 8vw;
@@ -44,7 +51,7 @@
 .postInfo{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   width: 100%;
   padding: 0 1em;
@@ -56,12 +63,16 @@
   margin: 0.5em 0;
 }
 .minorText {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   font-size: 0.8rem;
-  padding: 1em 2em;
+  padding: 1em 2em 0.1em 2em;
 }
 
 .minorText img {
-  height: 0.9em;
+  height: 0.8em;
   width: auto;
 
   transition: 0.3s;
