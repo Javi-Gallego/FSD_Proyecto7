@@ -6,9 +6,11 @@ import { thunk } from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 
 import userSlice from "./slices/userSlice";
+import commentSlice from "./slices/commentSlice";
 
 const reducers = combineReducers({
   user: userSlice,
+  comment: commentSlice,
 });
 
 const persistConfig = {

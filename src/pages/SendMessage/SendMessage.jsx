@@ -51,6 +51,7 @@ export const SendMessage = () => {
       console.log("error: ", error);
     }
   };
+  
   const handleFileChange = (event) => {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];

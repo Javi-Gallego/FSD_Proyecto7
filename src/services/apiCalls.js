@@ -310,3 +310,29 @@ export const deletePost = async (postId, token) => {
     return error;
   }
 };
+
+export const createCommentary = async (comment, token) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(comment),
+  };
+
+  try {
+    const response = await fetch(rootUrl + "comment/", options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};

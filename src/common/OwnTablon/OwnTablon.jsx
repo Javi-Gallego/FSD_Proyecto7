@@ -18,7 +18,7 @@ export const OwnTablon = ({ tablon }) => {
       setUsedTablon(updatedPosts);
     } catch (error) {}
   };
-
+console.log("usedTablon", usedTablon)
   return (
     <div className="tablonDesign">
       <div key="tablon" className="group">

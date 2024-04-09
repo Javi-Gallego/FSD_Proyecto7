@@ -1,19 +1,21 @@
 import "./SendComment.css";
 import imageIcon from "../../assets/image.svg";
-import { uploadImagePost } from "../../services/apiCalls";
+import { createComment, uploadImagePost } from "../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { validatePhoto } from "../../utils/functions";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
-import { createPost } from "../../services/apiCalls";
+import { createCommentary } from "../../services/apiCalls";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
+import { commentData } from "../../app/slices/commentSlice";
 import { useNavigate } from "react-router-dom";
 
 export const SendComment = () => {
   const postMaxLength = 150;
   const reduxUser = useSelector(userData);
+  const reduxComment = useSelector(commentData);
   const navigate = useNavigate();
   const [fileSelected, setFileSelected] = useState(false);
   const [isValidPhoto, setIsValidPhoto] = useState("disabled");
@@ -22,6 +24,7 @@ export const SendComment = () => {
     photoUrl: "",
     message: "",
     keyWords: "",
+    refersTo: reduxComment.postId,
   });
 
   useEffect(() => {
@@ -32,7 +35,7 @@ export const SendComment = () => {
   
   useEffect(() => {
     if (fileSelected) {
-      SendMessage();
+      SendComment();
     }
   }, [post.photoUrl]);
 
@@ -73,20 +76,21 @@ export const SendComment = () => {
       if (fileSelected) {
         await uploadPhoto();
       } else {
-        SendMessage();
+        SendComment();
       }
     } catch (error) {
       console.log("error: ", error);
     }
   };
-  const SendMessage = async () => {
+  const SendComment = async () => {
     try {
-      await createPost(post, reduxUser.credentials.token);
+      await createCommentary(post, reduxUser.credentials.token);
       navigate("/profile");
     } catch (error) {
       console.log("error: ", error);
     }
   };
+  console.log("reduxComment: ", reduxComment);
   return (
     <div className="sendCommentDesign">
       <div className="sendCommentCard">
