@@ -23,6 +23,13 @@ export const SendMessage = () => {
     message: "",
     keyWords: "",
   });
+
+  useEffect(() => {
+    if (reduxUser.credentials.token === "") {
+      navigate("/login");
+    }
+  }, []);
+  
   useEffect(() => {
     if (fileSelected) {
       SendMessage();
