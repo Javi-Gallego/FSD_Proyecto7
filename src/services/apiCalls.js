@@ -1,7 +1,7 @@
-const rootUrl = "https://rocket-server.up.railway.app/api/";
-const rootUrlPhoto = "https://rocket-server.up.railway.app/";
-// const rootUrl = "http://localhost:4000/api/";
-// const rootUrlPhoto = "http://localhost:4000/";
+// const rootUrl = "https://rocket-server.up.railway.app/api/";
+// const rootUrlPhoto = "https://rocket-server.up.railway.app/";
+const rootUrl = "http://localhost:4000/api/";
+const rootUrlPhoto = "http://localhost:4000/";
 
 export const registerMe = async (credentials) => {
   const options = {
@@ -272,6 +272,31 @@ export const createPost = async (post, token) => {
 
   try {
     const response = await fetch(rootUrl + "posts/", options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};
+
+export const deletePost = async (postId, token) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(rootUrl + "posts/" + postId, options);
 
     const data = await response.json();
 
