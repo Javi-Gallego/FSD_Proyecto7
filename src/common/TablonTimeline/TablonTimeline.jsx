@@ -3,31 +3,18 @@ import likeIcon from "../../img/likesicon3.png";
 import commentIcon from "../../img/comenticon3.png";
 import { getTimeline, likeFunction } from "../../services/apiCalls";
 import { useState } from "react";
-import { MyInput } from "../MyInput/MyInput";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
 
 export const TablonTimeline = ({ tablon }) => {
   const reduxUser = useSelector(userData);
   const [usedTablon, setUsedTablon] = useState(tablon);
-  const [commentary, setCommentary] = useState({
-    comment: "",
-  });
-
-  let likeString = " ";
 
   const handleLikeClick = async (postId) => {
     try {
       await likeFunction(postId, reduxUser.credentials.token);
       const newTablon = await getData();
       setUsedTablon(newTablon);
-    } catch (error) {}
-  };
-
-  const handleCommentClick = async (id, index) => {
-    try {
-      const viewComment = document.getElementById(`blockComment${index}`);
-      viewComment.classList.toggle("invisible");
     } catch (error) {}
   };
 
@@ -39,26 +26,9 @@ export const TablonTimeline = ({ tablon }) => {
     } catch (error) {}
   };
 
-  const inputHandler = (e) => {
-    setCommentary(e.target.value);
-  };
-
-  // const sendComment = async () => {
-  //     try {
-  //         if(comment === ""){
-  //             setMsgError("El comentario está vacío")
-  //             return;
-  //         }
-
-  //         await addComment(postId, commentary)
-  //     } catch (error) {
-
-  //     }
-  // }
-
   return (
     <div className="tablonDesign">
-      <div key="tablon">
+      <div key="tablon" className="group">
         {usedTablon &&
           usedTablon.map((post, index) => (
             <div key={`message${index}`} className="mensajeDesign">
@@ -66,7 +36,7 @@ export const TablonTimeline = ({ tablon }) => {
               <div className="postInfo">
                 <div className="authMessage">
                   @{post.authorId.userName} <br />
-                  {post.photoUrl && (
+                  {(post.photoUrl && post.photoUrl !== "") && (
                     <img
                       className="postImage"
                       src={post.photoUrl}
