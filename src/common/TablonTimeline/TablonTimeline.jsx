@@ -25,7 +25,6 @@ export const TablonTimeline = ({ tablon }) => {
   };
   
   const handleComment = (postId) => {
-    console.log("postId: ", postId)
     dispatch(writeId(postId));
     navigate("/sendcomment");
   };

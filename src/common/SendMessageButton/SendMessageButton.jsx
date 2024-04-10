@@ -6,12 +6,6 @@ export const SendMessageButton = () => {
     const navigate = useNavigate();
     
     return (
-        // <div
-        // className="sendMessageButtonDesign"
-        // onClick={() => (navigate("/sendMessage"))}>
         <img className="sendMessageButtonDesign" onClick={() => (navigate("/sendMessage"))} src={message} alt="newMessage" />
-        // </div>
-
     );
-
 };

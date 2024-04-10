@@ -1,5 +1,45 @@
-
-  
+.likes{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.userLikes{
+  margin: 0 0.5rem;
+}
+.comments{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.commentCard{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 0.3em 0;
+  font-size: 0.8rem;
+}
+.commentPhoto img{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+.commentInfo{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 0.4em;
+}
   @media screen and (max-width: 480px) {
 
   }
