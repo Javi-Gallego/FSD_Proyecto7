@@ -81,7 +81,9 @@ export const Register = () => {
         value={credentials.userName || ""}
         onChangeFunction={inputHandler}
       />
-      <div className="fieldEr">{userError.userNameError}</div>
+      <div className="separator">
+        <div className="fieldEr">{userError.userNameError}</div>
+      </div>
       <MyInput
         className={`authInputDesign ${
           userError.emailError !== "" ? "authInputDesignError" : ""
@@ -92,7 +94,9 @@ export const Register = () => {
         value={credentials.email || ""}
         onChangeFunction={inputHandler}
       />
-      <div className="fieldEr">{userError.emailError}</div>
+      <div className="separator">
+        <div className="fieldEr">{userError.emailError}</div>
+      </div>
       <MyInput
         className={`authInputDesign ${
           userError.passwordError !== "" ? "authInputDesignError" : ""
@@ -103,7 +107,9 @@ export const Register = () => {
         value={credentials.password || ""}
         onChangeFunction={inputHandler}
       />
-      <div className="fieldEr">{userError.passwordError}</div>
+      <div className="separator">
+        <div className="fieldEr">{userError.passwordError}</div>
+      </div>
       <MyButton
         text="Register"
         functionClick={regUser}
