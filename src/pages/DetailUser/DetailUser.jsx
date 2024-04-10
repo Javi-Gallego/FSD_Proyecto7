@@ -11,7 +11,7 @@ export const DetailUser = () => {
     name: "Ramiro",
   });
   useEffect(() => {
-    retrieveUser();
+    // retrieveUser();
   }, []);
 
   const retrieveUser = async () => {
