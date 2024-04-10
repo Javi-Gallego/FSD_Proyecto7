@@ -41,8 +41,8 @@ export const ModalPrivacy = (privacy) => {
       </select>
       {isOpen && (
         <div className="modal">
-          <div className="overlay" onClick={toggleModal} />
-          <div className="modal-content">
+          <div className="backModal" onClick={toggleModal} />
+          <div className="modalContent">
             <h2>Privacidad del perfil</h2>
             <p>
               Si el perfil es público aparecerás en las búsquedas de otros

@@ -1,19 +1,20 @@
-import "./SendMessage.css";
+import "./SendComment.css";
 import imageIcon from "../../assets/image.svg";
-import { uploadImagePost } from "../../services/apiCalls";
+import { createCommentary, uploadImagePost } from "../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { validatePhoto } from "../../utils/functions";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
-import { createPost } from "../../services/apiCalls";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
+import { commentData } from "../../app/slices/commentSlice";
 import { useNavigate } from "react-router-dom";
 
-export const SendMessage = () => {
+export const SendComment = () => {
   const postMaxLength = 150;
   const reduxUser = useSelector(userData);
+  const reduxComment = useSelector(commentData);
   const navigate = useNavigate();
   const [fileSelected, setFileSelected] = useState(false);
   const [isValidPhoto, setIsValidPhoto] = useState("disabled");
@@ -22,6 +23,7 @@ export const SendMessage = () => {
     photoUrl: "",
     message: "",
     keyWords: "",
+    refersTo: reduxComment.postId,
   });
 
   useEffect(() => {
@@ -32,7 +34,7 @@ export const SendMessage = () => {
   
   useEffect(() => {
     if (fileSelected) {
-      SendMessage();
+      SendComment();
     }
   }, [post.photoUrl]);
 
@@ -51,7 +53,6 @@ export const SendMessage = () => {
       console.log("error: ", error);
     }
   };
-  
   const handleFileChange = (event) => {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -74,24 +75,24 @@ export const SendMessage = () => {
       if (fileSelected) {
         await uploadPhoto();
       } else {
-        SendMessage();
+        SendComment();
       }
     } catch (error) {
       console.log("error: ", error);
     }
   };
-  const SendMessage = async () => {
+  const SendComment = async () => {
     try {
-      await createPost(post, reduxUser.credentials.token);
-      await updatePosts();
+      console.log("token ", reduxUser.credentials.token)
+      await createCommentary(post, reduxComment.postId , reduxUser.credentials.token);
       navigate("/profile");
     } catch (error) {
       console.log("error: ", error);
     }
   };
   return (
-    <div className="sendMessageDesign">
-      <div className="sendMessageCard">
+    <div className="sendCommentDesign">
+      <div className="sendCommentCard">
         <div className="sendMessageTitle">Escribir mensaje</div>
         <label htmlFor="photo">
           <img id="cam" src={imageIcon}></img>

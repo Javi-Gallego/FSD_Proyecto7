@@ -84,7 +84,7 @@ export const ModalChangePassword = () => {
       />
       {isOpen && (
         <div className="modal">
-          <div className="overlay" onClick={toggleModal} />
+          <div className="backModal" onClick={toggleModal} />
           <div
             className={
               isHidden === true ? "modalContent hiddenContent" : "modalContent"

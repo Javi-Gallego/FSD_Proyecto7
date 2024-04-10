@@ -6,6 +6,7 @@ import spinner from "../../img/rocket.gif";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
 import { SendMessageButton } from "../../common/SendMessageButton/SendMessageButton";
+import { OwnTablon } from "../../common/OwnTablon/OwnTablon";
 
 export const OwnPosts = () => {
   const reduxUser = useSelector(userData);
@@ -32,7 +33,7 @@ export const OwnPosts = () => {
     <>
       {Object.keys(msg).length !== 0 ? (
         <div className="ownPostsDesign">
-          <TablonTimeline tablon={msg} />
+          <OwnTablon tablon={msg} />
           <SendMessageButton />
         </div>
       ) : (
