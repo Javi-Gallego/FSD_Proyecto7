@@ -7,6 +7,7 @@ import { Timeline } from "../Timeline/Timeline";
 import { OwnPosts } from "../OwnPosts/OwnPosts";
 import { SendMessage } from "../SendMessage/SendMessage";
 import { SendComment } from "../SendComment/SendComment";
+import { DetailPost } from "../DetailPost/DetailPost";
 
 export const Body = () => {
   return (
@@ -19,6 +20,7 @@ export const Body = () => {
       <Route path="/ownposts" element={<OwnPosts />} />
       <Route path="/sendmessage" element={<SendMessage />} />
       <Route path="/sendcomment" element={<SendComment />} />
+      <Route path="/detailpost" element={<DetailPost />} />
       <Route path="*" element={<Navigate to="/" />} replace />
     </Routes>
   );

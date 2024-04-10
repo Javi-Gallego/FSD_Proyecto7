@@ -311,7 +311,7 @@ export const deletePost = async (postId, token) => {
   }
 };
 
-export const createCommentary = async (comment, token) => {
+export const createCommentary = async (comment, id, token) => {
   const options = {
     method: "POST",
     headers: {
@@ -322,7 +322,9 @@ export const createCommentary = async (comment, token) => {
   };
 
   try {
-    const response = await fetch(rootUrl + "comment/", options);
+    console.log(options.body)
+console.log(rootUrl + "posts/comment")
+    const response = await fetch(rootUrl + "posts/comment", options);
 
     const data = await response.json();
 

@@ -1,6 +1,7 @@
 import "./TablonTimeline.css";
-import likeIcon from "../../img/likesicon3.png";
-import commentIcon from "../../img/comenticon3.png";
+import likeIcon from "../../assets/heart.svg";
+import likedIcon from "../../assets/redhearth.svg";
+import commentIcon from "../../assets/message.svg";
 import { getTimeline, likeFunction } from "../../services/apiCalls";
 import { useState } from "react";
 import { userData } from "../../app/slices/userSlice";
@@ -58,7 +59,9 @@ export const TablonTimeline = ({ tablon }) => {
                 </div>
                 <div className="minorText">
                   <img
-                    src={likeIcon}
+                    src={post.likes.some(like => like.userName === reduxUser.credentials.user.userName)
+                      ? likedIcon
+                      : likeIcon}
                     onClick={() => {
                       handleLikeClick(post._id);
                     }}

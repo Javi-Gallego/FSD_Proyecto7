@@ -83,6 +83,7 @@ export const SendMessage = () => {
   const SendMessage = async () => {
     try {
       await createPost(post, reduxUser.credentials.token);
+      await updatePosts();
       navigate("/profile");
     } catch (error) {
       console.log("error: ", error);

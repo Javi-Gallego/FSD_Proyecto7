@@ -1,12 +1,11 @@
 import "./SendComment.css";
 import imageIcon from "../../assets/image.svg";
-import { createComment, uploadImagePost } from "../../services/apiCalls";
+import { createCommentary, uploadImagePost } from "../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { validatePhoto } from "../../utils/functions";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { CustomTextArea } from "../../common/CustomTextArea/CustomTextArea";
-import { createCommentary } from "../../services/apiCalls";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { commentData } from "../../app/slices/commentSlice";
@@ -84,13 +83,13 @@ export const SendComment = () => {
   };
   const SendComment = async () => {
     try {
-      await createCommentary(post, reduxUser.credentials.token);
+      console.log("token ", reduxUser.credentials.token)
+      await createCommentary(post, reduxComment.postId , reduxUser.credentials.token);
       navigate("/profile");
     } catch (error) {
       console.log("error: ", error);
     }
   };
-  console.log("reduxComment: ", reduxComment);
   return (
     <div className="sendCommentDesign">
       <div className="sendCommentCard">
