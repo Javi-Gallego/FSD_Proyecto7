@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TablonTimeline } from "../../common/TablonTimeline/TablonTimeline";
 import { getTimeline } from "../../services/apiCalls";
 import "./Timeline.css";
+import spinner from "../../img/rocket.gif";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
 import { SendMessageButton } from "../../common/SendMessageButton/SendMessageButton";
@@ -28,9 +29,17 @@ export const Timeline = () => {
   };
 
   return (
-    <div className="timelineDesign">
-      {Object.keys(msg).length !== 0 && <TablonTimeline tablon={msg} />}
-      <SendMessageButton />
-    </div>
+    <>
+      {Object.keys(msg).length !== 0 ? (
+        <div className="timelineDesign">
+          <TablonTimeline tablon={msg} />
+          <SendMessageButton />
+        </div>
+      ) : (
+        <div className="ownPostsDesign">
+          <img src={spinner}></img>
+        </div>
+      )}
+    </>
   );
 };

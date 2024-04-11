@@ -193,7 +193,7 @@ export const Profile = () => {
   return (
     <>
       {firstProfile.email === "" ? (
-        <div className="profileDesign">
+        <div className="ownPostsDesign">
           <img src={spinner}></img>
         </div>
       ) : (
