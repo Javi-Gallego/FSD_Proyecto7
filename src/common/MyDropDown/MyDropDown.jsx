@@ -14,7 +14,7 @@ export const MyDropDown = () => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" onClick={toggleDropDown}>
       {/* <button onClick={toggleDropDown} className="dropbtn">
         Dropdown
       </button> */}
