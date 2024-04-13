@@ -43,7 +43,6 @@ export const Config = () => {
         onChange={handleChange}
         value={secondaryColor}
       ></input>
-      <CameraIcon color="var(--secondary-color)" />
     </div>
   );
 };

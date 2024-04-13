@@ -31,7 +31,7 @@ export const MyDropDown = () => {
           /> */}
         <HeaderLink title="Perfil" destination="/profile" />
         <HeaderLink title="Mis posts" destination="/ownposts" />
-        <a href="#">Link 3</a>
+        <HeaderLink title="Búsqueda" destination="/search" />
       </div>
     </div>
   );

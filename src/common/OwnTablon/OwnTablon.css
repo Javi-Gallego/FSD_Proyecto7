@@ -1,4 +1,4 @@
-.likes{
+.likes {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -6,10 +6,10 @@
   align-items: center;
   width: 100%;
 }
-.userLikes{
+.userLikes {
   margin: 0 0.5rem;
 }
-.comments{
+.comments {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -17,7 +17,7 @@
   align-items: center;
   width: 100%;
 }
-.commentCard{
+.commentCard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -27,12 +27,12 @@
   margin: 0.3em 0;
   font-size: 0.8rem;
 }
-.commentPhoto img{
+.commentPhoto img {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
 }
-.commentInfo{
+.commentInfo {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -40,6 +40,9 @@
   align-items: flex-start;
   margin-left: 0.4em;
 }
-  @media screen and (max-width: 480px) {
-
-  }
+.authMessage,
+.minorText {
+  color: var(--secondary-color);
+}
+@media screen and (max-width: 480px) {
+}

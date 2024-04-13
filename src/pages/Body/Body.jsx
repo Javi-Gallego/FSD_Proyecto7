@@ -10,6 +10,7 @@ import { SendComment } from "../SendComment/SendComment";
 import { DetailUser } from "../DetailUser/DetailUser";
 import { DetailPost } from "../DetailPost/DetailPost";
 import { Config } from "../Config/Config";
+import { SearchUser } from "../SearchUser/SearchUser";
 
 export const Body = () => {
   return (
@@ -25,6 +26,7 @@ export const Body = () => {
       <Route path="/detailuser" element={<DetailUser />} />
       <Route path="/detailpost" element={<DetailPost />} />
       <Route path="/config" element={<Config />} />
+      <Route path="/search" element={<SearchUser />} />
       <Route path="*" element={<Navigate to="/" />} replace />
     </Routes>
   );

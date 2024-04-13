@@ -6,6 +6,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: rgb(249,246,237);
+    background-color: var(--primary-color);
   }
   

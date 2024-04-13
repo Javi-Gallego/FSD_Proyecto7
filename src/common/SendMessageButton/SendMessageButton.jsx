@@ -17,7 +17,7 @@ export const SendMessageButton = () => {
       onClick={sendMessage}
       alt="newMessage"
     >
-      <MessageIcon color="var(--secondary-color)" />
+      <MessageIcon color1="var(--primary-color)" color2="var(--secondary-color)"/>
     </div>
   );
 };

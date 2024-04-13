@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: rgb(249, 246, 237);
+  background-color: var(--primary-color);
   font-weight: bold;
 }
 .sendMessageCard {
@@ -19,7 +19,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 0.3em solid rgb(31, 115, 240);
+  border: 0.3em solid var(--secondary-color);
 }
 .counter{
   font-size: 0.7em;

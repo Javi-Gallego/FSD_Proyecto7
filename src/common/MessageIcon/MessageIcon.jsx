@@ -1,10 +1,10 @@
-export const MessageIcon = ({ color }) => (
+export const MessageIcon = ({ color1, color2 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    fill="white"
+    fill={color1}
     viewBox="0 0 24 24"
     strokeWidth="1.5"
-    stroke={color}
+    stroke={color2}
     className="w-6 h-6"
   >
     <path
