@@ -191,19 +191,6 @@ export const Profile = () => {
     changeProfile(updatedProfile);
   };
 
-  const handleChange = (event) => {
-    const root = document.documentElement;
-    if (event.target.name === "primaryColor") {
-      root.style.setProperty("--primary-color", event.target.value);
-    }
-    if (event.target.name === "secondaryColor") {
-      root.style.setProperty("--secondary-color", event.target.value);
-    }
-
-    console.log("primaryColor: ", root.style.getPropertyValue("--primary-color"));
-    console.log("secondaryColor: ", root.style.getPropertyValue("--secondary-color"));
-  };
-
   return (
     <>
       {firstProfile.email === "" ? (
@@ -216,9 +203,11 @@ export const Profile = () => {
             <img src={profile.photo} alt="profile" />
             <div className="editButton">
               <form onSubmit={updateProfilePhoto}>
-                <label htmlFor="photo">
-                  <img id="cam" src={camera}></img>
-                  <CameraIcon color="var(--secondary-color)" />
+                <label htmlFor="photo" >
+                  {/* <img id="cam" src={camera}></img> */}
+                  <div id="cam">
+                    <CameraIcon color="var(--secondary-color)" />
+                  </div>
                 </label>
                 <input
                   id="photo"
@@ -324,18 +313,6 @@ export const Profile = () => {
             <ModalActive active={true} />
           </article>
           <SendMessageButton />
-          <input
-            name="primaryColor"
-            type="color"
-            onChange={handleChange}
-            value="var(--primary-color)"
-          ></input>
-          <input
-            name="secondaryColor"
-            type="color"
-            onChange={handleChange}
-            value="var(--secondary-color)"
-          ></input>
         </div>
       )}
     </>

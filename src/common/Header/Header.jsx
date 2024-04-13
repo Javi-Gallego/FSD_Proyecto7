@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userData, logout } from "../../app/slices/userSlice";
 import { HeaderPhotoProfile } from "../HeaderPhotoProfile/HeaderPhotoProfile";
 import { MyDropDown } from "../MyDropDown/MyDropDown";
+import { ConfigDropDown } from "../ConfigDropDown/ConfigDropDown";
 
 export function Header() {
   const reduxUser = useSelector(userData);
@@ -13,14 +14,15 @@ export function Header() {
     <div className="headerDesign">
       {reduxUser.credentials.token ? (
         <>
-          <HeaderPhotoProfile
+          <MyDropDown />
+          {/* <HeaderPhotoProfile
             source={reduxUser.credentials.user.photo}
             destination="/profile"
           />
-          <HeaderLink title="OwnPosts" destination="/ownposts" />
+          <HeaderLink title="OwnPosts" destination="/ownposts" /> */}
           <HeaderLink title="Lanzadera" destination="/timeline" />
-          <LogoutLink title="logout" />
-          <MyDropDown />
+          
+          <ConfigDropDown />
         </>
       ) : (
         <>

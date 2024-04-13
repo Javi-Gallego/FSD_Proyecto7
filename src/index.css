@@ -12,8 +12,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary-color: rgb(249, 246, 237);
-  --secondary-color: rgb(31, 115, 240);
+  --primary-color: #F9F6ED;
+  --secondary-color: #1F73F0;
 }
 
 a {

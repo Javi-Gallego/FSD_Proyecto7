@@ -3,6 +3,7 @@ import "./MyDropDown.css";
 import { HeaderPhotoProfile } from "../HeaderPhotoProfile/HeaderPhotoProfile";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
+import { HeaderLink } from "../HeaderLink/HeaderLink";
 
 export const MyDropDown = () => {
   const reduxUser = useSelector(userData);
@@ -12,21 +13,24 @@ export const MyDropDown = () => {
     setMyDropdown(!myDropdown);
   };
 
-  const closeDropDown = () => {
-    setMyDropdown(false);
-  };
-
   return (
-    <div className="dropdown" onBlur={closeDropDown}>
-      <button onClick={toggleDropDown} className="dropbtn">
+    <div className="dropdown">
+      {/* <button onClick={toggleDropDown} className="dropbtn">
         Dropdown
-      </button>
-      <div id="myDropdown" className={myDropdown ? "dropdown-content show" : "dropdown-content"}>
-      <HeaderPhotoProfile
+      </button> */}
+      <div className="headerPhotoProfileDesign" onClick={toggleDropDown}>
+        <img src={reduxUser.credentials.user.photo} alt="Profile photo"></img>
+      </div>
+      <div
+        id="myDropdown"
+        className={myDropdown ? "dropdown-content show" : "dropdown-content"}
+      >
+        {/* <HeaderPhotoProfile
             source={reduxUser.credentials.user.photo}
             destination="/profile"
-          />
-        <a href="#">Link 2</a>
+          /> */}
+        <HeaderLink title="Perfil" destination="/profile" />
+        <HeaderLink title="Mis posts" destination="/ownposts" />
         <a href="#">Link 3</a>
       </div>
     </div>
