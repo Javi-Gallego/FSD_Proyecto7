@@ -18,6 +18,7 @@ export const DetailUser = () => {
 
   const retrieveUser = async () => {
     try {
+      console.log("user a buscar: ", reduxUserDetail.userId);
       let query = "userName=" + reduxUserDetail.userId;
       const user = await getUsers(query, reduxUser.credentials.token);
 

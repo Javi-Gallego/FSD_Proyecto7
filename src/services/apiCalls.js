@@ -378,7 +378,33 @@ export const getPosts = async (query, token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-    
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};
+
+export const followUser = async (userId, token) => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    console.log(`${rootUrl}users/follow/${userId}`)
+    const response = await fetch(`${rootUrl}users/follow/${userId}`, options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+    console.log("data", data.data);
     return data.data;
   } catch (error) {
     console.log("error1: " + error);

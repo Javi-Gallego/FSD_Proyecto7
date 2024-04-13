@@ -4,13 +4,19 @@
   padding: 0;
   text-align: center;
 }
-
+* {
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+  -webkit-user-drag: none; /* Chrome, Safari */
+  -moz-user-drag: none; /* Firefox */
+  -ms-user-drag: none; /* IE 10+ */
+  user-drag: none; /* Standard syntax */
+}
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  user-select: none;
 }
-

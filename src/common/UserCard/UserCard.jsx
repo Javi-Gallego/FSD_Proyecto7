@@ -5,12 +5,16 @@ import commentIcon from "../../assets/message.svg";
 import { useEffect, useState } from "react";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
-import { getPosts } from "../../services/apiCalls";
+import { followUser, getPosts } from "../../services/apiCalls";
 import { MyButton } from "../MyButton/MyButton";
+import dayjs from "dayjs";
+import { update } from "../../app/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 export const UserCard = (user) => {
   const reduxUser = useSelector(userData);
   const [allowed, setAllowed] = useState(false);
+  const [follow, setFollow] = useState(false);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -20,17 +24,23 @@ export const UserCard = (user) => {
     ) {
       setAllowed(true);
     }
+    const includes = reduxUser.credentials.user.following.some(follow => follow.userName === user["user"].userName);
+    if (includes) {
+      setFollow(true);
+    }
   }, []);
+
   useEffect(() => {
     if (allowed) {
       retrievePosts();
     }
   }, [allowed]);
+
   useEffect(() => {
     if (messages.length > 0) {
-      console.log("messages", messages.length);
     }
   }, [messages]);
+
   const retrievePosts = async () => {
     try {
       let query = `userName=${user["user"].userName}`;
@@ -42,8 +52,17 @@ export const UserCard = (user) => {
       console.log(error);
     }
   };
-  //   console.log(user["user"].following);
-    console.log(reduxUser.credentials.user);
+
+  const followFunction = async () => {
+    try {
+      const newfollow = await followUser(user["user"]._id, reduxUser.credentials.token);
+      setFollow(!follow);
+      newArray = { following: reduxUser.credentials.user.following };
+    } catch (error) {
+      
+    }
+  };
+
   return (
     <>
     <div className="userCardDesign">
@@ -52,7 +71,7 @@ export const UserCard = (user) => {
       <div className="userCardData">
         <p>Siguiendo ({user["user"].following.length})</p>
         <p>Seguidores ({user["user"].following.length})</p>
-        <MyButton text="Follow/Unfollow" functionClick={() => ("hola")} currentClass="buttonFollow"/>
+        <MyButton text={follow ? "Unfollow" : "Follow"} functionClick={followFunction} currentClass="buttonFollow"/>
         </div>
     </div>
         {!allowed ? (
@@ -63,7 +82,7 @@ export const UserCard = (user) => {
           </div>
         ) : (
           <div className="postMap">
-            {messages.map((post, index) => {
+            {Array.isArray(messages) && messages?.map((post, index) => {
                return (
                 <div key={`message${index}`} className="mensajeDesign">
                     <img className="messageAuthorPhoto" src={post.authorId.photo}></img>
@@ -84,7 +103,7 @@ export const UserCard = (user) => {
                         Likes({post.likes ? post.likes.length : 0})
                         <img src={commentIcon} onClick={() => showComments(index)} />
                         Comentarios({post.comments ? post.comments.length : 0})
-                        
+                        <div className="date">Posteado el {dayjs(post.createdAt).format("DD-MMM-YY HH:mm")}</div>
                     </div>
                     </div>
                 </div>)

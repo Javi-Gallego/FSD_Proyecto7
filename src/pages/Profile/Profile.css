@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  background-color: rgb(249,246,237);
+  background-color: var(--primary-color);
   font-weight: bold;
 }
 .profileCardDesign {
@@ -21,20 +21,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(249,246,237);
-  color: rgb(31, 115, 240);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding-top: 0.5em;
 }
 .profileCardDesign img {
   height: 10em;
   width: 10em;
   border-radius: 50%;
 }
-.completeField{
+.completeField {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.fieldName{
+.fieldName {
   width: 4.5em;
 }
 .fieldEr {
@@ -47,7 +48,7 @@
   font-weight: bold;
   background-color: transparent;
 }
-.editButton form{
+.editButton form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,11 +58,11 @@
   width: 12.5em;
   height: 1.2em;
   text-align: center;
-  border: 0.2em solid rgb(249,246,237);
-  background-color: rgb(249,246,237);
+  border: 0.2em solid var(--primary-color);
+  background-color: var(--primary-color);
   font-size: 1rem;
   font-weight: bold;
-  color: rgb(31, 95, 206);
+  color: var(--secondary-color);
 }
 .fieldInputDesignError {
   border: 0.2em solid red;
@@ -85,7 +86,7 @@ label {
   cursor: pointer;
 }
 
-#cam{
+#cam {
   height: auto;
   width: 2em;
 }
@@ -93,58 +94,59 @@ select {
   width: 6em;
   height: 2em;
   border-radius: 0.3em;
-  border: 0.2em solid rgb(31, 95, 206);
-  background-color: rgb(249,246,237);
+  border: 0.2em solid var(--secondary-color);
+  background-color: var(--primary-color);
   font-size: 1rem;
-  color: rgb(31, 95, 206);
-  margin: 1em 0 ;
+  color: var(--secondary-color);
+  margin: 1em 0;
 }
-.buttonActive{
+.buttonActive {
   height: 2em;
   width: 6em;
   font-weight: bold;
-  background-color: rgb(249,246,237);
-  color: rgb(31, 95, 206);
-  border: 0.2em solid rgb(31, 95, 206);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: 0.2em solid var(--secondary-color);
   border-radius: 0.3em;
   cursor: pointer;
-  margin: 1em 0 ;
+  margin: 1em 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.buttonInactive{
+.buttonInactive {
   height: 2em;
   width: 6em;
   font-weight: bold;
-  background-color: rgb(249,246,237);
+  background-color: var(--primary-color);
   color: rgb(180, 28, 28);
   border: 0.2em solid rgb(180, 28, 28);
   border-radius: 0.3em;
   cursor: pointer;
-  margin: 1em 0 ;
+  margin: 1em 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.submitButton{
+.submitButton {
   height: 2.5em;
   width: 6em;
   font-weight: bold;
-  background-color: rgb(249,246,237);
-  color: rgb(31, 95, 206);
-  border: 0.2em solid rgb(31, 95, 206);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: 0.2em solid var(--secondary-color);
   border-radius: 0.3em;
   cursor: pointer;
 }
-.submitButton:hover{
-  background-color: rgb(31, 95, 206);
+.submitButton:hover {
+  background-color: var(--secondary-color);
   color: white;
 }
-.fileSelected{
+.fileSelected {
   background-color: salmon;
+  color: black;
 }
 @media screen and (max-width: 480px) {
   .profileDesign {
@@ -155,7 +157,7 @@ select {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(249,246,237);
+    background-color: var(--primary-color);
     font-weight: bold;
     padding: 0.5em 0 0 0;
   }
@@ -166,8 +168,8 @@ select {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(249,246,237);
-    color: rgb(31, 115, 240);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
   }
   .fieldEr {
     display: flex;
@@ -180,7 +182,7 @@ select {
     font-weight: bold;
     background-color: transparent;
   }
-  .editButton form{
+  .editButton form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -190,11 +192,11 @@ select {
     width: 14em;
     height: 1.3em;
     text-align: center;
-    border: 0.2em solid rgb(249,246,237);
-    background-color: rgb(249,246,237);
+    border: 0.2em solid var(--primary-color);
+    background-color: var(--primary-color);
     font-size: 1rem;
     font-weight: bold;
-    color: rgb(31, 95, 206);
+    color: var(--secondary-color);
   }
   .fieldInputDesignError {
     border: 0.2em solid red;
@@ -212,11 +214,11 @@ select {
     width: 10em;
     border-radius: 50%;
   }
-  #cam{
+  #cam {
     height: auto;
     width: 2em;
   }
-  .submitButton{
+  .submitButton {
     height: 2.5em;
     width: 9em;
   }

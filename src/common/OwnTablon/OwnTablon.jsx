@@ -47,6 +47,7 @@ export const OwnTablon = ({ tablon }) => {
     }
   };
   const showUser = (name) => {
+    console.log(name);
     dispatch(writeId(name));
     navigate("/detailuser");
   };

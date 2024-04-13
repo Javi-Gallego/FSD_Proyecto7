@@ -47,3 +47,9 @@ export const validatePhoto = (file) => {
   }
   return "";
 };
+
+export const activateVibration = (duration) => {
+  if (navigator.vibrate) {
+    navigator.vibrate(duration);
+  }
+};

@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
 
-  color: rgb(31, 115, 240);
+  color: var(--secondary-color);
   position: relative;
   width: fit-content;
   cursor: pointer;
@@ -15,12 +15,4 @@
   height: 3em;
   width: 3em;
   border-radius: 50%;
-}
-
-.headerPhotoProfileDesign:hover {
-  border: 0.2em solid rgb(31, 115, 240);
-  border-radius: 50%;
-}
-.headerPhotoProfileDesign:hover img{
-  height: 2.65em;
 }

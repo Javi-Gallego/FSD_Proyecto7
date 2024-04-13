@@ -11,8 +11,8 @@
   font-weight: bold;
 
   cursor: pointer;
-  background-color: rgb(31, 115, 240);
-  border: 0.18em solid rgb(31, 115, 240);
+  background-color: var(--secondary-color);
+  border: 0.18em solid var(--secondary-color);
   color: white;
   transition: 0.3s;
 }
@@ -47,13 +47,13 @@
   margin: 1em 0;
 
   cursor: pointer;
-  background-color: rgb(249,246,237);
-  color: rgb(31, 115, 240);
-  border: 0.18em solid rgb(31, 95, 206);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: 0.18em solid var(--secondary-color);
 }
 .buttonDesign:hover{
-    background-color: rgb(31, 95, 206);
-    color: rgb(249,246,237);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 @media screen and (max-width: 864px) {

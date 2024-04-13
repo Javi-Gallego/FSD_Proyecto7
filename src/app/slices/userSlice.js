@@ -18,10 +18,18 @@ export const userSlice = createSlice({
         ...action.payload,
       };
     },
+    update: (state, action) => {
+      return {
+        credentials: {
+          ...state.credentials,
+          ...action.payload,
+        },
+      };    
+    }
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, update } = userSlice.actions;
 
 export const userData = (state) => state.user;
 

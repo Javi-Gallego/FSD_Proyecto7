@@ -4,6 +4,7 @@ import "./Header.css";
 import { useSelector, useDispatch } from "react-redux";
 import { userData, logout } from "../../app/slices/userSlice";
 import { HeaderPhotoProfile } from "../HeaderPhotoProfile/HeaderPhotoProfile";
+import { MyDropDown } from "../MyDropDown/MyDropDown";
 
 export function Header() {
   const reduxUser = useSelector(userData);
@@ -19,6 +20,7 @@ export function Header() {
           <HeaderLink title="OwnPosts" destination="/ownposts" />
           <HeaderLink title="Lanzadera" destination="/timeline" />
           <LogoutLink title="logout" />
+          <MyDropDown />
         </>
       ) : (
         <>
