@@ -28,7 +28,11 @@ Along the text of maximum 150 characters you can send an image and write keyword
 You can change your photo profile, your password or add your name and lastname to your profile info. You can also make your profile public or private if you don't want to be seen by anyone and for that, one of the main features is that you can follow users and they can follow you. Anyone in your following list can see your post even if your account is set to private.
 
 As superadmin you can see and delete any user and use filters the search.
-
+<div style="display: flex; justify-content: space-around;">
+<center><img src="/src/img/readme/mobile.gif"/></center>
+<center><img src="/src/img/readme/mobile (1).gif"/></center>
+<center><img src="/src/img/readme/mobile (2).gif"/></center>
+</div>
 
 ## Stack
 
@@ -78,7 +82,7 @@ Unfortunately, the server is hosted on a free site and it is very likely that is
 https://github.com/Javi-Gallego/FSD_Proyecto5.git
 
 If you need to run the server locally, you will need to go to /src/services/apiCalls.js and put the right urlRoot.
-<center><img src="/src/img/readme/rooturl.JPG"></center>
+<center><img src="/src/img/readme/rooturl.jpg"></center>
 
 ## Pages
 
@@ -99,13 +103,13 @@ To log as a normal user you can either use this one or you can register your own
 
 - REGISTER :earth_africa:
 
-<center><img src="/src/img/readme/register.JPG"></center>
+<center><img src="/src/img/readme/register.jpg"></center>
 
 As you are writing in the inputs you can see if the field has an error and is not valid
 
 - LOGIN :earth_africa:
 
-<center><img src="/src/img/readme/login.JPG"></center> 
+<center><img src="/src/img/readme/login.jpg"></center> 
 
 
 To log as a super_admin 
@@ -127,70 +131,71 @@ To log as a normal user (or you can register your own)
 
 - HEADER 
 
-<center><img src="/src/img/readme/usernavbar.JPG"></center> 
+<center><img src="/src/img/readme/navbar.jpg"></center> 
 
-Detail of de header when a user is logged. You see the user name's to go to their profile, the appointment section and the logout button.
+Detail of de header when a user is logged. There are three sections.
+
+In the left we can go to "profile", "my posts", "following" and "search". In your profile you can change your first and last name, your photo, your password and you can 
 
 - PROFILE
 
-<center><img src="/src/img/readme/profile.JPG"></center> 
+<center><img src="/src/img/readme/profile.jpg"></center> 
 
-A detailed view of the user data. You can update any field at any moment. If you want to change password you will be switched to another page.
+A detailed view of the user data. You can update some of the fields.
 
-<center><img src="/src/img/readme/changepass.JPG"></center>
+If you want to change password you will be switched to another page.
 
-- APPOINTMENTS
+If you make your profile private your post will not be seen by anyone outside your following list
 
-<center><img src="/src/img/readme/appointments.JPG"></center>
+If you deactivate your account, you no longer will be able to log in. Your profile and posts will not be reachable.
 
-Here you can your own appointments, if you click in each one you can see a detailed view and the option to delete the appointment.
+<center><img src="/src/img/readme/changepassword.jpg"></center>
 
-If you go to Create appointment you will see a new view.
+- LAUNCHER
 
-<center><img src="/src/img/readme/createappointment.JPG"></center>
+<center><img src="/src/img/readme/launcher.jpg"></center>
 
-</details>
-</br>
+A rocket can not be put in motion without a "Launcher". In the Launcher you will have three sections: Timeline, +Rated, +Trendy (+Trendy is not implemented as for now)
+Timeline are the post of those who are in my "following" list 
++Rated is a list of the 10 most liked posts
++Trendy will be a list of the words most used to describe our posts and a way to see what topics are important for the users.
+
+- WRITE POST
+
+<center><img src="/src/img/readme/writepost.jpg"></center>
+
+You can upload a photo clicking on the image and write a text of maximum 150 words. In the last input you can write words separated by a space (with this keywords the +Trend will be created)
 
 :angel:
 <details>
 <summary>Super admin</summary>
 
-- CATALOG
-
-<center><img src="/src/img/readme/superservices.JPG"></center>
-
-The catalog page from the super admin changes and now you can edit or delete appointment and can create a new one.
-
-- APPOINTMENTS
-
-<center><img src="/src/img/readme/superappointments.JPG"></center>
-
-In this page you can see all the appointmets from the moment onwards. You can delete any appointmet and see the details if you click on any of them.
 - USERS 
 
-In this page you can search for any user in the database and apply three optional filters: name, email and role (e.g. search for tattoo_artist or user)
+In this page you can search for any user in the database and apply three optional filters: name, email and role
 The search will retrieve all users than matches the filter partially, if you search por the name "er" and you have an user with the name "Javier" that user will be shown
 
-<center><img src="/src/img/readme/searchuser.JPG"></center>
+<center><img src="/src/img/readme/searchuser.jpg"></center>
 
 You can choose how many results will be shown in each page and navigate through the different pages
 
-<center><img src="/src/img/readme/searchuser2.JPG"></center>
+<center><img src="/src/img/readme/searchuser2.jpg"></center>
 
-If you click in any user you will see a detailed view and you can change his role or delete the user from the database
+If you click in any user you will see a detailed view and you can delete the user from the database (only deactivate users can be deleted). Change role is not implemented.
 </details>
 
 ## Problems solutions
-A lot of changes in the API because it was not made with front end point of view. Almost as many commits to fix things in the server as in the front end. It was good to see both points of view for the first time.
+The project with the most problems. Problably because social network's are something we know well and a lot of ideas came up, unfortunately, when I was making the backend I didn't take this things in consideration because I had never make any front end project. It was a challenge and I did as much as I could in the thight scheduled until the deadline. It was satisfying researching to find ways to upload images, to use CSS variables for the first time to make custom themes, using Redux for the first time... 
 
 ## Future features
-[ ] Tattoo artists can also make and update appointments on their own.
-[ ] Add Tatto artist section with their works and bio.
-[ ] CRUD for catalog as super admin
-[ ] Maybe, to buy a piercing you do not need to make an appointment, just go to the shop. So you can see the service but cannot make an appointment with that service.
-[ ] Add piercings images to the catalog.
-[ ] Add role for piercing artists if they are different from the tattoo ones, add another role for the artists than can do both.
+[ ] super_admin can change roles or update fields of the users profile
+[ ] CRUD for posts as super admin
+[ ] Better experience seeing posts. Only can see comments of the posts in your own posts.
+[ ] Implement "Trends". Already made the back endpoint but not time to implement. A list of the most used keywords.
+[ ] Fix some issues with links or updates when following an user.
+[ ] Receive a notification each time a user follows/unfollows you.
+[ ] Direct messages between users.
+[ ] Admin views only can be managed with a big screen. The project was meant to be used in a mobile device if your an user and with a PC, laptop if you are an admin. I would like to make a more enjoyable experience even in a mobile phone if you are an admin.
 
 ## Development:
 
