@@ -24,6 +24,7 @@ export const UserCard = (user) => {
   const [follow, setFollow] = useState(false);
   const [messages, setMessages] = useState([]);
   const [detailUser, setDetailUser] = useState({ user });
+  const [finishedPosts, setFinishedPosts] = useState(false);
 
   useEffect(() => {
     if (
@@ -50,7 +51,7 @@ export const UserCard = (user) => {
   }, [allowed]);
 
   useEffect(() => {
-    console.log("actualiza detail User");
+    setFinishedPosts(true);
   }, [messages, detailUser]);
 
   const [usedTablon, setUsedTablon] = useState([]);
@@ -66,7 +67,7 @@ export const UserCard = (user) => {
 
   const getData = async () => {
     try {
-        return (tablon = await getTimeline(reduxUser.credentials.token));
+      return (tablon = await getTimeline(reduxUser.credentials.token));
     } catch (error) {}
   };
 
@@ -79,7 +80,6 @@ export const UserCard = (user) => {
     try {
       let query = `userName=${user["user"].userName}`;
       const posts = await getPosts(query, reduxUser.credentials.token);
-
       setMessages(posts);
     } catch (error) {
       console.log(error);
@@ -121,14 +121,15 @@ export const UserCard = (user) => {
       </div>
       {!allowed ? (
         <p>Este usuario tiene la cuenta privada</p>
-      ) : messages.length === 0 ? (
+      ) : messages.length === 0 && finishedPosts === false ? (
         <div className="ownPostsDesign">
           <img src={spinner}></img>
         </div>
       ) : (
         <div className="postMap">
           {Array.isArray(messages) &&
-            messages.length > 0 &&
+          messages.length > 0 &&
+          finishedPosts === true ? (
             messages?.map((post, index) => {
               return (
                 <div key={`message${index}`} className="mensajeDesign">
@@ -184,7 +185,10 @@ export const UserCard = (user) => {
                   </div>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <div className="ownPostsDesign">El usuario no tiene mensajes</div>
+          )}
         </div>
       )}
     </>

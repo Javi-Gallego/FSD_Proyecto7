@@ -69,9 +69,9 @@ export const SearchUser = () => {
           users.map((user) => (
             <div
               key={user._id}
-              className="user"
+              className="searchUser"
               onClick={() => detailUser(user.userName)}>
-              <p>{user.userName}</p>
+              <div>{user.userName}</div>
             </div>
           ))}
         {((Array.isArray(users) && users.length === 0) || error === true) && (
