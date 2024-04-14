@@ -1,15 +1,11 @@
 import "./UserCard.css";
 import spinner from "../../img/rocket.gif";
-import likeIcon from "../../assets/heart.svg";
-import likedIcon from "../../assets/redhearth.svg";
-import commentIcon from "../../assets/message.svg";
 import { useEffect, useState } from "react";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
 import { followUser, getPosts } from "../../services/apiCalls";
 import { MyButton } from "../MyButton/MyButton";
 import dayjs from "dayjs";
-import { update } from "../../app/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { writeId } from "../../app/slices/commentSlice";
 import { useNavigate } from "react-router-dom";

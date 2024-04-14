@@ -4,9 +4,11 @@ import { HeaderPhotoProfile } from "../HeaderPhotoProfile/HeaderPhotoProfile";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { HeaderLink } from "../HeaderLink/HeaderLink";
+import { photoData } from "../../app/slices/photoSlice";
 
 export const MyDropDown = () => {
   const reduxUser = useSelector(userData);
+  const reduxPhoto = useSelector(photoData);
   const [myDropdown, setMyDropdown] = useState(false);
 
   const toggleDropDown = () => {
@@ -15,20 +17,13 @@ export const MyDropDown = () => {
 
   return (
     <div className="dropdown" onClick={toggleDropDown}>
-      {/* <button onClick={toggleDropDown} className="dropbtn">
-        Dropdown
-      </button> */}
       <div className="headerPhotoProfileDesign" onClick={toggleDropDown}>
-        <img src={reduxUser.credentials.user.photo} alt="Profile photo"></img>
+        <img src={reduxPhoto.photo} alt="Profile photo"></img>
       </div>
       <div
         id="myDropdown"
         className={myDropdown ? "dropdown-content show" : "dropdown-content"}
       >
-        {/* <HeaderPhotoProfile
-            source={reduxUser.credentials.user.photo}
-            destination="/profile"
-          /> */}
         <HeaderLink title="Perfil" destination="/profile" />
         <HeaderLink title="Mis posts" destination="/ownposts" />
         <HeaderLink title="Following" destination="/following" />

@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { decodeToken } from "react-jwt";
 import { loginMe } from "../../services/apiCalls";
 import { login } from "../../app/slices/userSlice";
-import { useDispatch } from "react-redux";
+import { writePhoto } from "../../app/slices/photoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "../../app/slices/userSlice";
 
 import "./Login.css";
 import { MyButton } from "../../common/MyButton/MyButton";
@@ -12,6 +14,7 @@ import { MyButton } from "../../common/MyButton/MyButton";
 export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const reduxUser = useSelector(userData);
   sessionStorage.setItem("auth", false);
 
   const [msgError, setMsgError] = useState("");
@@ -48,8 +51,10 @@ export const Login = () => {
       token: fetched.token,
       user: decoded,
     };
-
+    const profilePhoto = decoded.photo;
     dispatch(login({ credentials: allowed }));
+
+    dispatch(writePhoto(profilePhoto))
     
     navigate("/");
   };

@@ -7,10 +7,10 @@ import {
   updateProfile,
 } from "../../services/apiCalls";
 import { validate, validatePhoto } from "../../utils/functions";
-import { userData, login } from "../../app/slices/userSlice";
+import { userData } from "../../app/slices/userSlice";
+import { writePhoto } from "../../app/slices/photoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import spinner from "../../img/rocket.gif";
-import camera from "../../assets/camera.svg";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { ModalPrivacy } from "../../common/ModalPrivacy/ModalPrivacy";
@@ -128,17 +128,34 @@ export const Profile = () => {
 
   const changeProfile = async (updatedFields) => {
     try {
+      console.log("updatedFields: ", updatedFields);
       const updated = await updateProfile(
         updatedFields,
         reduxUser.credentials.token
       );
-
+      console.log("updated: ", updated);
       setDisabled("disabled");
-      // const updateCredentials = {
-      //   ...reduxUser.credentials,
-      //   user: updated,
-      // };
-      dispatch(login({ credentials: updated }));
+      setFirstProfile({
+        userName: updated.userName,
+        firstName: updated.firstName,
+        lastName: updated.lastName,
+        email: updated.email,
+        isActive: updated.is_active,
+        privacy: updated.privacy,
+        photo: updated.photo,
+      });
+
+      setProfile({
+        userName: updated.userName,
+        firstName: updated.firstName,
+        lastName: updated.lastName,
+        email: updated.email,
+        isActive: updated.is_active,
+        privacy: updated.privacy,
+        photo: updated.photo,
+      });
+  
+      dispatch(writePhoto(updated.photo));  
     } catch (error) {}
   };
 
@@ -160,18 +177,14 @@ export const Profile = () => {
   const updateProfilePhoto = async (event) => {
     event.preventDefault();
     try {
+
       const response = await handleFormSubmit(event);
-      setProfile((prevState) => {
-        const updatedProfile = {
-          ...prevState,
-          photo: response,
-        };
-        const updatedFields = {
-          photo: response,
-        };
-        changeProfile(updatedFields);
-        return updatedProfile;
-      });
+
+      const updatedFields = {
+        photo: response,
+      };
+
+      changeProfile(updatedFields);
       setIsValidPhoto("disabled");
       setFileSelected(false);
     } catch (error) {
@@ -191,7 +204,7 @@ export const Profile = () => {
     console.log("updatedProfile: ", updatedProfile);
     changeProfile(updatedProfile);
   };
-
+ console.log("redux", reduxUser.credentials.user)
   return (
     <>
       {firstProfile.email === "" ? (
@@ -201,11 +214,10 @@ export const Profile = () => {
       ) : (
         <div className="profileDesign">
           <article className="profileCardDesign">
-            <img src={profile.photo} alt="profile" />
+            <img src={firstProfile.photo} alt="profile" />
             <div className="editButton">
               <form onSubmit={updateProfilePhoto}>
                 <label htmlFor="photo" >
-                  {/* <img id="cam" src={camera}></img> */}
                   <div id="cam">
                     <CameraIcon color="var(--secondary-color)" />
                   </div>

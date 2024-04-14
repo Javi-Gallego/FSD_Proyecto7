@@ -9,12 +9,14 @@ import userSlice from "./slices/userSlice";
 import commentSlice from "./slices/commentSlice";
 import postSlice from "./slices/postSlice";
 import userDetailSlice from "./slices/userDetailSlice";
+import photoSlice from "./slices/photoSlice";
 
 const reducers = combineReducers({
   user: userSlice,
   comment: commentSlice,
   post: postSlice,
   userDetail: userDetailSlice,
+  photo: photoSlice,
 });
 
 const persistConfig = {

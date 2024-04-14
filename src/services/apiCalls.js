@@ -1,8 +1,8 @@
-// const rootUrl = "https://rocket-server.up.railway.app/api/";
-// const rootUrlPhoto = "https://rocket-server.up.railway.app/";
+const rootUrl = "https://rocket-server.up.railway.app/api/";
+const rootUrlPhoto = "https://rocket-server.up.railway.app/";
 
-const rootUrl = "http://localhost:4000/api/";
-const rootUrlPhoto = "http://localhost:4000/";
+// const rootUrl = "http://localhost:4000/api/";
+// const rootUrlPhoto = "http://localhost:4000/";
 
 export const registerMe = async (credentials) => {
   const options = {
