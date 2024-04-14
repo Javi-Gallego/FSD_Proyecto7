@@ -40,10 +40,8 @@ export const Timeline = () => {
   };
 
   const changeFocus = (newFocus) => {
-    console.log(newFocus);
     setFocus(newFocus);
   };
-console.log(msg);
   return (
     <>
       {Object.keys(msg).length !== 0 ? (

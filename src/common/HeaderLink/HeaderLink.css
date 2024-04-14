@@ -13,7 +13,7 @@
   margin: 1em;
 }
 
-.headerLinkDesign:hover {
+/* .headerLinkDesign:hover {
   transform: skew(10deg);
 }
 
@@ -50,4 +50,4 @@
 .headerLinkDesign:hover::after {
   width: 120%;
   outline: 0.019em solid var(--primary-color);
-}
+} */

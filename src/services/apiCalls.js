@@ -347,7 +347,6 @@ export const getUsers = async (query, token) => {
   };
 
   try {
-    console.log(`${rootUrl}users?${query}`)
     const response = await fetch(`${rootUrl}users?${query}`, options);
 
     const data = await response.json();
@@ -355,7 +354,7 @@ export const getUsers = async (query, token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-console.log(data.data)
+
     return data.data;
   } catch (error) {
     console.log("error1: " + error);

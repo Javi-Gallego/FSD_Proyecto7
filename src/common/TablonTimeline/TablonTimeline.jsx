@@ -1,12 +1,9 @@
 import "./TablonTimeline.css";
-import likeIcon from "../../assets/heart.svg";
-import likedIcon from "../../assets/redhearth.svg";
-import commentIcon from "../../assets/message.svg";
 import { getTimeline, likeFunction } from "../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
-import { writeId } from "../../app/slices/commentSlice";
+import { writeId } from "../../app/slices/userDetailSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MessageIcon } from "../MessageIcon/MessageIcon";
@@ -43,6 +40,11 @@ export const TablonTimeline = ({ tablon, focus }) => {
     } catch (error) {}
   };
 
+  const goToUserDetail = (userName) => {
+    dispatch(writeId(userName));
+    navigate("/detailuser");
+  };
+
   return (
     <div className="tablonDesign">
       <div key="tablon" className="group">
@@ -52,7 +54,7 @@ export const TablonTimeline = ({ tablon, focus }) => {
               <img className="postAuthorPhoto" src={focus === "timeline" ? post.authorId.photo : post.authorId.photo}></img>
               <div className="postInfo">
                 <div className="authMessage">
-                  @{post.authorId.userName} <br />
+                  <div onClick={() => goToUserDetail(post.authorId.userName)}> @{post.authorId.userName} </div>
                   {(post.photoUrl && post.photoUrl !== "") && (
                     <img
                       className="postImage"

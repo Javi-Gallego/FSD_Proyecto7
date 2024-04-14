@@ -128,12 +128,11 @@ export const Profile = () => {
 
   const changeProfile = async (updatedFields) => {
     try {
-      console.log("updatedFields: ", updatedFields);
+
       const updated = await updateProfile(
         updatedFields,
         reduxUser.credentials.token
       );
-      console.log("updated: ", updated);
       setDisabled("disabled");
       setFirstProfile({
         userName: updated.userName,
@@ -204,7 +203,7 @@ export const Profile = () => {
     console.log("updatedProfile: ", updatedProfile);
     changeProfile(updatedProfile);
   };
- console.log("redux", reduxUser.credentials.user)
+
   return (
     <>
       {firstProfile.email === "" ? (

@@ -22,8 +22,6 @@ export function Following() {
     const fetchFollowing = async () => {
         try {
             const newFollowing = await getFollowing(reduxUser.credentials.token);
-            console.log(newFollowing[0].following);
-            
             setFollowing(newFollowing[0].following);
         } catch (error) {
             console.log(error);

@@ -1,7 +1,4 @@
 import "./OwnTablon.css";
-import likeIcon from "../../assets/heart.svg";
-import commentIcon from "../../assets/message.svg";
-import trashIcon from "../../assets/trash.svg";
 import { deletePost } from "../../services/apiCalls";
 import { useState } from "react";
 import { userData } from "../../app/slices/userSlice";
