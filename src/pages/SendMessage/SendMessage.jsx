@@ -41,14 +41,10 @@ export const SendMessage = () => {
   const uploadPhoto = async () => {
     try {
       const response = await uploadImagePost(image);
-
       setPost((prevState) => ({
         ...prevState,
         photoUrl: response,
       }));
-
-      setIsValidPhoto("disabled");
-      setFileSelected(false);
     } catch (error) {
       console.log("error: ", error);
     }
@@ -71,6 +67,7 @@ export const SendMessage = () => {
       [event.target.name]: event.target.value,
     });
   };
+
   const startMessage = async () => {
     try {
       if (fileSelected) {
@@ -82,14 +79,18 @@ export const SendMessage = () => {
       console.log("error: ", error);
     }
   };
+
   const SendMessage = async () => {
     try {
+      setIsValidPhoto("disabled");
+      setFileSelected(false);
       await createPost(post, reduxUser.credentials.token);
       navigate("/profile");
     } catch (error) {
       console.log("error: ", error);
     }
   };
+
   return (
     <div className="sendMessageDesign">
       <div className="sendMessageCard">

@@ -3,7 +3,7 @@ import likeIcon from "../../assets/heart.svg";
 import likedIcon from "../../assets/redhearth.svg";
 import commentIcon from "../../assets/message.svg";
 import { getTimeline, likeFunction } from "../../services/apiCalls";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userData } from "../../app/slices/userSlice";
 import { useSelector } from "react-redux";
 import { writeId } from "../../app/slices/commentSlice";
@@ -12,11 +12,15 @@ import { useNavigate } from "react-router-dom";
 import { MessageIcon } from "../MessageIcon/MessageIcon";
 import { LikeIcon } from "../LikeIcon/LikeIcon";
 
-export const TablonTimeline = ({ tablon }) => {
+export const TablonTimeline = ({ tablon, focus }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const reduxUser = useSelector(userData);
   const [usedTablon, setUsedTablon] = useState(tablon);
+
+  useEffect(() => {
+    setUsedTablon(tablon);
+  }, [tablon]);
 
   const handleLikeClick = async (postId) => {
     try {
@@ -45,7 +49,7 @@ export const TablonTimeline = ({ tablon }) => {
         {usedTablon &&
           usedTablon.map((post, index) => (
             <div key={`message${index}`} className="mensajeDesign">
-              <img className="postAuthorPhoto" src={post.authorId.photo}></img>
+              <img className="postAuthorPhoto" src={focus === "timeline" ? post.authorId.photo : post.authorId.photo}></img>
               <div className="postInfo">
                 <div className="authMessage">
                   @{post.authorId.userName} <br />
@@ -60,7 +64,7 @@ export const TablonTimeline = ({ tablon }) => {
                 </div>
                 <div className="minorText">
                   <div className="imageIcon" onClick={() =>  handleLikeClick(post._id)}>
-                  {post.likes.some(like => like.userName === reduxUser.credentials.user.userName)
+                  {post.likes && post.likes.some(like => like.userName === reduxUser.credentials.user.userName)
                       ? <LikeIcon color1="red" color2="red" />
                       : <LikeIcon color1="white" color2="var(--secondary-color)" />}
                   </div>

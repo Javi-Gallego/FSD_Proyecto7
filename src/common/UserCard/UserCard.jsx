@@ -13,6 +13,8 @@ import { update } from "../../app/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { writeId } from "../../app/slices/commentSlice";
 import { useNavigate } from "react-router-dom";
+import { MessageIcon } from "../MessageIcon/MessageIcon";
+import { LikeIcon } from "../LikeIcon/LikeIcon";
 
 export const UserCard = (user) => {
   const reduxUser = useSelector(userData);
@@ -21,7 +23,7 @@ export const UserCard = (user) => {
   const [allowed, setAllowed] = useState(false);
   const [follow, setFollow] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [detailUser, setDetailUser] = useState({user});
+  const [detailUser, setDetailUser] = useState({ user });
 
   useEffect(() => {
     if (
@@ -39,7 +41,7 @@ export const UserCard = (user) => {
         setFollow(true);
       }
     }
-  }, []);
+  }, [follow]);
 
   useEffect(() => {
     if (allowed) {
@@ -48,8 +50,7 @@ export const UserCard = (user) => {
   }, [allowed]);
 
   useEffect(() => {
-    if (messages.length > 0) {
-    }
+    console.log("actualiza detail User");
   }, [messages, detailUser]);
 
   const [usedTablon, setUsedTablon] = useState([]);
@@ -57,9 +58,15 @@ export const UserCard = (user) => {
   const handleLikeClick = async (postId) => {
     try {
       newLike = await likeFunction(postId, reduxUser.credentials.token);
-      console.log(newLike)
+      console.log("newLike: ", newLike);
       const newTablon = await getData();
       setUsedTablon(newTablon);
+    } catch (error) {}
+  };
+
+  const getData = async () => {
+    try {
+        return (tablon = await getTimeline(reduxUser.credentials.token));
     } catch (error) {}
   };
 
@@ -85,12 +92,11 @@ export const UserCard = (user) => {
         user["user"]._id,
         reduxUser.credentials.token
       );
+      console.log(newfollow.userToFollow.followers);
       setDetailUser(newfollow.userToFollow);
       setFollow(!follow);
-      newArray = { following: reduxUser.credentials.user.following };
     } catch (error) {}
   };
-
 
   return (
     <>
@@ -98,8 +104,14 @@ export const UserCard = (user) => {
         <div className="userCardName">@{detailUser.userName}</div>
         <img className="userPhoto" src={detailUser.photo}></img>
         <div className="userCardData">
-          <p>Siguiendo ({detailUser && detailUser.following ? detailUser.following.length : 0})</p>
-          <p>Seguidores ({detailUser && detailUser.folowers ? detailUser.followers.length: 0})</p>
+          <p>
+            Siguiendo ({detailUser?.following ? detailUser.following.length : 0}
+            )
+          </p>
+          <p>
+            Seguidores ({detailUser?.folowers ? detailUser.followers.length : 0}
+            )
+          </p>
           <MyButton
             text={follow ? "Unfollow" : "Follow"}
             functionClick={followFunction}
@@ -115,7 +127,8 @@ export const UserCard = (user) => {
         </div>
       ) : (
         <div className="postMap">
-          {Array.isArray(messages) && messages.length > 0 &&
+          {Array.isArray(messages) &&
+            messages.length > 0 &&
             messages?.map((post, index) => {
               return (
                 <div key={`message${index}`} className="mensajeDesign">
@@ -136,25 +149,33 @@ export const UserCard = (user) => {
                       "{post.message}" <br />
                     </div>
                     <div className="minorText">
-                      <img
-                        src={
-                          post.likes.some(
-                            (like) =>
-                              like.userName ===
-                              reduxUser.credentials.user.userName
-                          )
-                            ? likedIcon
-                            : likeIcon
-                        }
-                        onClick={() => {
-                          handleLikeClick(post._id);
-                        }}
-                      />
+                      <div
+                        className="imageIcon"
+                        onClick={() => handleLikeClick(post._id)}
+                      >
+                        {post.likes.some(
+                          (like) =>
+                            like.userName ===
+                            reduxUser.credentials.user.userName
+                        ) ? (
+                          <LikeIcon color1="red" color2="red" />
+                        ) : (
+                          <LikeIcon
+                            color1="white"
+                            color2="var(--secondary-color)"
+                          />
+                        )}
+                      </div>
                       Likes({post.likes ? post.likes.length : 0}):
-                      <img
-                        src={commentIcon}
+                      <div
+                        className="imageIcon"
                         onClick={() => handleComment(post._id)}
-                      />
+                      >
+                        <MessageIcon
+                          color1="white"
+                          color2="var(--secondary-color)"
+                        />
+                      </div>
                       Comentarios({post.comments ? post.comments.length : 0})
                       <div className="date">
                         {dayjs(post.createdAt).format("DD-MMM-YY HH:mm")}

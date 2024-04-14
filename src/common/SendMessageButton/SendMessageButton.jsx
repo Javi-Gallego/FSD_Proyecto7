@@ -7,10 +7,10 @@ export const SendMessageButton = () => {
   const navigate = useNavigate();
 
   const sendMessage = () => {
-    console.log("sendMessage");
     activateVibration(200);
     navigate("/sendMessage");
   };
+  
   return (
     <div
       className="sendMessageButtonDesign"

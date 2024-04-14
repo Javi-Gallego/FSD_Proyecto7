@@ -1,7 +1,7 @@
-const rootUrl = "https://rocket-server.up.railway.app/api/";
-const rootUrlPhoto = "https://rocket-server.up.railway.app/";
-// const rootUrl = "http://localhost:4000/api/";
-// const rootUrlPhoto = "http://localhost:4000/";
+// const rootUrl = "https://rocket-server.up.railway.app/api/";
+// const rootUrlPhoto = "https://rocket-server.up.railway.app/";
+const rootUrl = "http://localhost:4000/api/";
+const rootUrlPhoto = "http://localhost:4000/";
 
 export const registerMe = async (credentials) => {
   const options = {
@@ -405,7 +405,7 @@ export const followUser = async (userId, token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-
+console.log("data", data.data)
     return data.data;
   } catch (error) {
     console.log("error1: " + error);
@@ -425,6 +425,34 @@ export const getFollowing = async (token) => {
   try {
     const response = await fetch(
       `${rootUrl}users/following`,
+      options
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};
+
+export const getTopRated = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `${rootUrl}posts/mostliked`,
       options
     );
 

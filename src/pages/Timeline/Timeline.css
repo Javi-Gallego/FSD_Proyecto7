@@ -7,4 +7,16 @@
   justify-content: flex-start;
   align-items: center;
   background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+.tablonTitle{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 0.5em;
+}
+.focus{
+  cursor: pointer;
 }
