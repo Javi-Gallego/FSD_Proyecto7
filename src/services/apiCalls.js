@@ -468,3 +468,28 @@ export const getTopRated = async (token) => {
     return error;
   }
 };
+
+export const deleteUsers = async (userId, token) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(rootUrl + "users/" + userId, options);
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};

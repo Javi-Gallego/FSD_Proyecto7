@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ManagementUsers.css";
-import { getUsers } from "../../services/apiCalls";
+import { deleteUsers, getUsers } from "../../services/apiCalls";
 import nextArrowPage from "../../img/nextpage.png";
 import prevArrowPage from "../../img/prevpage.png";
 import { MyInput } from "../../common/MyInput/MyInput";
@@ -8,6 +8,8 @@ import { MyButton } from "../../common/MyButton/MyButton";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { TrashIcon } from "../../common/TrashIcon/TrashIcon";
+import { LeftArrowIcon } from "../../common/LeftArrow/LeftArrow";
+import { RightArrowIcon } from "../../common/RigthArrowIcon/RightArrowIcon";
 
 export const ManagementUsers = () => {
   const reduxUser = useSelector(userData);
@@ -40,9 +42,17 @@ export const ManagementUsers = () => {
     fetchRoles();
   }, [page]);
 
+  useEffect(() => {
+    const searching = setTimeout(() => {
+      fetchUsers();
+    }, 350);
+    return () => clearTimeout(searching);
+  }, [querys]);
+
   const handleLimit = (e) => {
     setLimit(e.target.innerHTML);
   };
+
   const fetchUsers = async () => {
     try {
       let newQuery = "";
@@ -56,6 +66,7 @@ export const ManagementUsers = () => {
         newQuery += `&role=${querys.role}`;
       }
       newQuery += `&limit=${limit}&skip=${page}`;
+
       const newUsers = await getUsers(newQuery, token);
       setUsers(newUsers);
     } catch (error) {
@@ -75,13 +86,13 @@ export const ManagementUsers = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    fetchUsers();
   };
+
   const removeUser = async (userId) => {
     try {
-      //   const deleted = await deleteUser(token, userId);
-      //   const updatedUsers = users.filter((user) => user.id !== userId);
-      //   setUsers(updatedUsers);
+      const deleted = await deleteUsers(userId, token);
+      const updatedUsers = users.filter((user) => user.id !== userId);
+      setUsers(updatedUsers);
     } catch (error) {
       console.log(error);
     }
@@ -150,11 +161,6 @@ export const ManagementUsers = () => {
               onChangeFunction={inputHandler}
             />
           </div>
-          <MyButton
-            text="Buscar"
-            functionClick={fetchUsers}
-            currentClass="buttonDesign"
-          />
         </div>
         <div className="searchOptions fadeBack">
           <div className="limit">
@@ -172,12 +178,12 @@ export const ManagementUsers = () => {
             </div>
           </div>
           <div className="page centerRow">
-            <div onClick={prevPage} className="centerRow">
-              <img className="pageButton" src={prevArrowPage} />
+            <div onClick={prevPage} className="centerRow Arrows">
+              <LeftArrowIcon color="var(--secondary-color)" />
             </div>
             {`Página: ${page}`}
-            <div onClick={nextPage} className="centerRow">
-              <img className="pageButton" src={nextArrowPage} />
+            <div onClick={nextPage} className="centerRow Arrows">
+              <RightArrowIcon color="var(--secondary-color)" />
             </div>
           </div>
         </div>
@@ -199,14 +205,13 @@ export const ManagementUsers = () => {
               >
                 <div
                   className=" user firstRow"
-                  onClick={() => toggleDetails(index)}
                 >
-                  <div className="userName centerRow">{user.userName}</div>
-                  <div className="firstName centerRow">{user.firstName}</div>
-                  <div className="lastName centerRow">{user.lastName}</div>
-                  <div className="email centerRow">{user.email}</div>
-                  <div className="role centerRow">{user.role}</div>
-                  {user.role.name === "super_admin" ? (
+                  <div onClick={() => toggleDetails(index)} className="userName centerRow">{user.userName}</div>
+                  <div onClick={() => toggleDetails(index)} className="firstName centerRow">{user.firstName}</div>
+                  <div onClick={() => toggleDetails(index)} className="lastName centerRow">{user.lastName}</div>
+                  <div onClick={() => toggleDetails(index)} className="email centerRow">{user.email}</div>
+                  <div onClick={() => toggleDetails(index)} className="role centerRow">{user.role}</div>
+                  {user.role === "super_admin" ? (
                     <div></div>
                   ) : (
                     <div
@@ -215,7 +220,7 @@ export const ManagementUsers = () => {
                       onMouseEnter={() => setUserHovered(user._id)}
                       onMouseLeave={() => setUserHovered("")}
                     >
-                      {(userHovered === user._id) ? (
+                      {userHovered === user._id ? (
                         <TrashIcon
                           color1="rgb(252, 119, 119)"
                           color2="var(--secondary-color)"
@@ -229,7 +234,7 @@ export const ManagementUsers = () => {
                     </div>
                   )}
                 </div>
-                {details === index && user.role.name !== "super_admin" && (
+                {details === index && user.role !== "super_admin" && (
                   <div className="details">
                     <select name="role" onChange={roleHandler}>
                       <option value="admin">Admin</option>

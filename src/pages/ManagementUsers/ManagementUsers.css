@@ -114,6 +114,11 @@
   .back{
     background-color: var(--primary-color);
   }
+  .Arrows{
+    height: 1.8em;
+    width: 2.2em;
+    cursor: pointer;
+  }
   .userName {
     height: 2em;
     width: 15vw;
