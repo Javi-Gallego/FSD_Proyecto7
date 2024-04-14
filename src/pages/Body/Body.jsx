@@ -11,6 +11,8 @@ import { DetailUser } from "../DetailUser/DetailUser";
 import { DetailPost } from "../DetailPost/DetailPost";
 import { Config } from "../Config/Config";
 import { SearchUser } from "../SearchUser/SearchUser";
+import { ManagementUsers } from "../ManagementUsers/ManagementUsers";
+import { Following } from "../Following/Following";
 
 export const Body = () => {
   return (
@@ -27,6 +29,8 @@ export const Body = () => {
       <Route path="/detailpost" element={<DetailPost />} />
       <Route path="/config" element={<Config />} />
       <Route path="/search" element={<SearchUser />} />
+      <Route path="/managementUsers" element={<ManagementUsers />} />
+      <Route path="/following" element={<Following />} />
       <Route path="*" element={<Navigate to="/" />} replace />
     </Routes>
   );

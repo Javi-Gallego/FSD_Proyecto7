@@ -100,7 +100,11 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.imageIcon {
+  width: 1.65em;
+  cursor: pointer;
+  margin: 0 0.5em;
+}
 .invisible {
   display: none;
 }

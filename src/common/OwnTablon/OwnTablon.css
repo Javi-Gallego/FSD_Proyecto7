@@ -44,5 +44,11 @@
 .minorText {
   color: var(--secondary-color);
 }
+
+.imageIcon {
+  width: 1.65em;
+  cursor: pointer;
+  margin: 0 0.5em;
+}
 @media screen and (max-width: 480px) {
 }

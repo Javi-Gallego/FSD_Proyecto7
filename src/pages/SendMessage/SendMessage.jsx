@@ -10,6 +10,8 @@ import { createPost } from "../../services/apiCalls";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { CameraIcon } from "../../common/CameraIcon/CameraIcon";
+import { ImageIcon } from "../../common/ImageIcon/ImageIcon";
 
 export const SendMessage = () => {
   const postMaxLength = 150;
@@ -83,7 +85,6 @@ export const SendMessage = () => {
   const SendMessage = async () => {
     try {
       await createPost(post, reduxUser.credentials.token);
-      await updatePosts();
       navigate("/profile");
     } catch (error) {
       console.log("error: ", error);
@@ -94,7 +95,9 @@ export const SendMessage = () => {
       <div className="sendMessageCard">
         <div className="sendMessageTitle">Escribir mensaje</div>
         <label htmlFor="photo">
-          <img id="cam" src={imageIcon}></img>
+          <div id="cam">
+            <ImageIcon color="var(--secondary-color)" />
+          </div>
         </label>
         <input
           id="photo"

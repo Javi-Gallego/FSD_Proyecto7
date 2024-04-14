@@ -50,7 +50,7 @@ export const Login = () => {
     };
 
     dispatch(login({ credentials: allowed }));
-
+    
     navigate("/");
   };
 

@@ -70,8 +70,7 @@ export const SearchUser = () => {
             <div
               key={user._id}
               className="user"
-              onClick={() => detailUser(user.userName)}
-            >
+              onClick={() => detailUser(user.userName)}>
               <p>{user.userName}</p>
             </div>
           ))}

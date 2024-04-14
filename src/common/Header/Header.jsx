@@ -14,15 +14,20 @@ export function Header() {
     <div className="headerDesign">
       {reduxUser.credentials.token ? (
         <>
-          <MyDropDown />
-          {/* <HeaderPhotoProfile
-            source={reduxUser.credentials.user.photo}
-            destination="/profile"
-          />
-          <HeaderLink title="OwnPosts" destination="/ownposts" /> */}
-          <HeaderLink title="Lanzadera" destination="/timeline" />
-          
-          <ConfigDropDown />
+          {reduxUser.credentials.user.roleName === "user" && (
+            <>
+              <MyDropDown />
+              <HeaderPhotoProfile destination="/timeline" />
+              <ConfigDropDown />
+            </>
+          )}
+          {(reduxUser.credentials.user.roleName === "admin" ||
+            reduxUser.credentials.user.roleName === "super_admin") && (
+            <>
+              <HeaderLink title="Usuarios" destination="/managementusers" />
+              <ConfigDropDown />
+            </>
+          )}
         </>
       ) : (
         <>

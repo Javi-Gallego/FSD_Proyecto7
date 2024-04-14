@@ -1,0 +1,178 @@
+.adminUsersDesign {
+    height: auto;
+    min-height: 90vh;
+    width: 100vw;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url("../../img/fondo7.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: var(--primary-color);
+  }
+  .centerRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .searchMenu {
+    height: 3em;
+    width: 70vw;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .searchOptions {
+    height: 3em;
+    width: 70vw;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--secondary-color);
+  }
+  .tituloSearch{
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+  .limit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+  .limitInput {
+    margin: 0 0.4em;
+  }
+  .limitInput:hover {
+    cursor: pointer;
+  }
+  .page {
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+  .page img {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  .pageButton:hover {
+    cursor: pointer;
+  }
+  .users {
+    height: auto;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.1em solid var(--secondary-color);
+  }
+  .user {
+    height: auto;
+    width: 80vw;
+    margin:0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+  .user:hover {
+    background-color: rgba(122, 122, 122, 0.3);
+    cursor: pointer;
+  }
+  /* .Dark {
+    background-color: rgb(63, 63, 63);
+  }
+  .Light {
+    background-color: rgb(88, 88, 88);
+  } */
+  
+  .index {
+    height: 2em;
+    width: 80vw;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+  .back{
+    background-color: var(--primary-color);
+  }
+  .userName {
+    height: 2em;
+    width: 15vw;
+    text-align: flex-start;
+  }
+  .firstName {
+    height: 2em;
+    width: 10vw;
+    text-align: flex-start;
+  }
+  .lastName {
+    height: 2em;
+    width: 10vw;
+    text-align: flex-start;
+  }
+  .email {
+    height: 2em;
+    width: 30vw;
+    text-align: flex-start;
+  }
+  .role {
+    height: 2em;
+    width: 10vw;
+    text-align: flex-start;
+  }
+  .delete {
+    height: 2em;
+    width: 2.8vw;
+  }
+  /* .delete:hover {
+    background-color: rgb(252, 119, 119);
+    cursor: pointer;
+  } */
+  .delete:active {
+    transform: scale(0.8);
+  }
+  .delete img {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  .delete2 {
+    height: 2em;
+    width: 4.7vw;
+  }
+  .separator {
+    height: 1em;
+    width: 80vw;
+  }
+  .border {
+    border: 0.1em solid var(--secondary-color);
+  }
+  .details{
+    width: 100%;
+    min-width: 30em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .fadeBack{
+    /* background-color: rgba(0, 0, 0, 0.5); */
+  }

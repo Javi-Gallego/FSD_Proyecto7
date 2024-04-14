@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { writeId } from "../../app/slices/commentSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { MessageIcon } from "../MessageIcon/MessageIcon";
+import { LikeIcon } from "../LikeIcon/LikeIcon";
 
 export const TablonTimeline = ({ tablon }) => {
   const navigate = useNavigate();
@@ -57,16 +59,15 @@ export const TablonTimeline = ({ tablon }) => {
                   "{post.message}" <br />
                 </div>
                 <div className="minorText">
-                  <img
-                    src={post.likes.some(like => like.userName === reduxUser.credentials.user.userName)
-                      ? likedIcon
-                      : likeIcon}
-                    onClick={() => {
-                      handleLikeClick(post._id);
-                    }}
-                  />
+                  <div className="imageIcon" onClick={() =>  handleLikeClick(post._id)}>
+                  {post.likes.some(like => like.userName === reduxUser.credentials.user.userName)
+                      ? <LikeIcon color1="red" color2="red" />
+                      : <LikeIcon color1="white" color2="var(--secondary-color)" />}
+                  </div>
                   Likes({post.likes ? post.likes.length : 0}):
-                  <img src={commentIcon}  onClick={() => handleComment(post._id)}/>
+                  <div className="imageIcon" onClick={() => handleComment(post._id)}>
+                    <MessageIcon color1="white" color2="var(--secondary-color)" />
+                  </div>
                   Comentarios({post.comments ? post.comments.length : 0})
                 </div>
               </div>

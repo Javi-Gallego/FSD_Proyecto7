@@ -354,7 +354,7 @@ export const getUsers = async (query, token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-
+console.log(data.data)
     return data.data;
   } catch (error) {
     console.log("error1: " + error);
@@ -397,7 +397,7 @@ export const followUser = async (userId, token) => {
   };
 
   try {
-    console.log(`${rootUrl}users/follow/${userId}`)
+
     const response = await fetch(`${rootUrl}users/follow/${userId}`, options);
 
     const data = await response.json();
@@ -405,7 +405,35 @@ export const followUser = async (userId, token) => {
     if (!data.success) {
       throw new Error(data.message);
     }
-    console.log("data", data.data);
+
+    return data.data;
+  } catch (error) {
+    console.log("error1: " + error);
+    return error;
+  }
+};
+
+export const getFollowing = async (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `${rootUrl}users/following`,
+      options
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
+    }
+
     return data.data;
   } catch (error) {
     console.log("error1: " + error);

@@ -134,11 +134,11 @@ export const Profile = () => {
       );
 
       setDisabled("disabled");
-      const updateCredentials = {
-        ...reduxUser.credentials,
-        user: updated,
-      };
-      dispatch(login({ credentials: updateCredentials }));
+      // const updateCredentials = {
+      //   ...reduxUser.credentials,
+      //   user: updated,
+      // };
+      dispatch(login({ credentials: updated }));
     } catch (error) {}
   };
 
@@ -188,6 +188,7 @@ export const Profile = () => {
         lastName: profile.lastName,
       }),
     };
+    console.log("updatedProfile: ", updatedProfile);
     changeProfile(updatedProfile);
   };
 

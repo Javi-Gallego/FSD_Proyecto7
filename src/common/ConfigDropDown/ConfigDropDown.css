@@ -3,8 +3,11 @@
   color: var(--secondary-color);
   border: none;
   cursor: pointer;
-  height: 3.7em;
-  width: 3.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.5em;
+  width: 3.4em;
 }
 
 /* Dropdown button on hover & focus */

@@ -9,11 +9,10 @@
   justify-content: flex-start;
   align-items: center;
   text-align: flex-start;
-  border: 0.1em solid transparent;
-  background-color: transparent;
   font-size: 1.2rem;
   font-weight: bold;
   background-color: white;
-  border: 0.2em solid var(--secondary-color);
+  border: 0.1em solid var(--secondary-color);
+  border-radius: 0.3em;
   color: var(--secondary-color);
 }

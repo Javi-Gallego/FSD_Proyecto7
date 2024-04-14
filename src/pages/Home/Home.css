@@ -7,9 +7,14 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-image: url("../../img/Rocketlogo.png");
-  background-repeat: no-repeat;
-  background-size: fit;
-  background-position: center;
-  background-color: rgb(249,246,237);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+.title{
+  font-size: 2em;
+  margin-top: 1em;
+  font-weight: bold;
+}
+.logoHome{
+  width: 20em;
 }

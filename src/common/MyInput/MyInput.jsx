@@ -5,6 +5,7 @@ export const MyInput = ({
   name,
   placeholder,
   value,
+  disabled,
   onChangeFunction,
   className,
 }) => {
@@ -14,6 +15,7 @@ export const MyInput = ({
       name={name}
       placeholder={placeholder}
       value={value}
+      disabled={disabled}
       onChange={onChangeFunction}
       className={className}
     />

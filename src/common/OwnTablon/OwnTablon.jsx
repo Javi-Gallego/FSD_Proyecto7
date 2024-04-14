@@ -9,6 +9,9 @@ import { userDetailData } from "../../app/slices/userDetailSlice";
 import { writeId } from "../../app/slices/userDetailSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { TrashIcon } from "../TrashIcon/TrashIcon";
+import { LikeIcon } from "../LikeIcon/LikeIcon";
+import { MessageIcon } from "../MessageIcon/MessageIcon";
 
 export const OwnTablon = ({ tablon }) => {
   const reduxUser = useSelector(userData);
@@ -72,16 +75,17 @@ export const OwnTablon = ({ tablon }) => {
                   "{post.message}" <br />
                 </div>
                 <div className="minorText">
-                  <img src={likeIcon} onClick={() => showLikes(index)} />
+                  <div className="imageIcon" onClick={() => showLikes(index)}>
+                    <LikeIcon color1="white" color2="var(--secondary-color)" />
+                  </div>
                   Likes({post.likes ? post.likes.length : 0})
-                  <img src={commentIcon} onClick={() => showComments(index)} />
+                  <div className="imageIcon" onClick={() => showComments(index)}>
+                    <MessageIcon color1="white" color2="var(--secondary-color)" />
+                  </div>
                   Comentarios({post.comments ? post.comments.length : 0})
-                  <img
-                    src={trashIcon}
-                    onClick={() => {
-                      handleDeleteClick(post._id);
-                    }}
-                  />
+                  <div className="imageIcon" onClick={() => {handleDeleteClick(post._id)}}>
+                    <TrashIcon color1="none" color2="var(--secondary-color)" />
+                  </div>
                 </div>
                 {activeLikes &&
                   post?.likes?.length > 0 &&
