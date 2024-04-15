@@ -1,6 +1,8 @@
 # Welcome to Rocket Social Network
 
-<center><img src="./src/img/readme/favicon.png"/></center>
+
+<img src="./public/favicon.png"/>
+
 
 This is the seventh project in the Full Stack Developer Bootcamp at GeeksHubs. In these two weeks I've tried to make my own version of a social network. I hope you like it.
 
