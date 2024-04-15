@@ -1,7 +1,7 @@
 # Welcome to Rocket Social Network
 
 
-<img src="./public/favicon.png"/>
+<center><img src="./public/favicon.png"/></center>
 
 
 This is the seventh project in the Full Stack Developer Bootcamp at GeeksHubs. In these two weeks I've tried to make my own version of a social network. I hope you like it.
@@ -125,10 +125,13 @@ To log as a normal user (or you can register your own)
     "password": "Aa123456"
 ```
 </details>
+
 </br>
 
 :lock:
+
 <details>
+
 <summary>Registered users</summary>
 
 - HEADER 
@@ -168,8 +171,12 @@ Timeline are the post of those who are in my "following" list
 
 You can upload a photo clicking on the image and write a text of maximum 150 words. In the last input you can write words separated by a space (with this keywords the +Trend will be created)
 
+</details>
+
 :angel:
+
 <details>
+
 <summary>Super admin</summary>
 
 - USERS 
@@ -184,20 +191,38 @@ You can choose how many results will be shown in each page and navigate through 
 <center><img src="./public/searchuser2.jpg"></center>
 
 If you click in any user you will see a detailed view and you can delete the user from the database (only deactivate users can be deleted). Change role is not implemented.
+
 </details>
 
 ## Problems solutions
 The project with the most problems. Problably because social network's are something we know well and a lot of ideas came up, unfortunately, when I was making the backend I didn't take this things in consideration because I had never make any front end project. It was a challenge and I did as much as I could in the thight scheduled until the deadline. It was satisfying researching to find ways to upload images, to use CSS variables for the first time to make custom themes, using Redux for the first time... 
 
 ## Future features
+
+
 [ ] super_admin can change roles or update fields of the users profile
+
+
 [ ] CRUD for posts as super admin
+
+
 [ ] Better experience seeing posts. Only can see comments of the posts in your own posts.
+
+
 [ ] Implement "Trends". Already made the back endpoint but not time to implement. A list of the most used keywords.
+
+
 [ ] Fix some issues with links or updates when following an user.
+
+
 [ ] Receive a notification each time a user follows/unfollows you.
+
+
 [ ] Direct messages between users.
+
+
 [ ] Admin views only can be managed with a big screen. The project was meant to be used in a mobile device if your an user and with a PC, laptop if you are an admin. I would like to make a more enjoyable experience even in a mobile phone if you are an admin.
+
 
 ## Development:
 
