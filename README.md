@@ -31,9 +31,9 @@ You can change your photo profile, your password or add your name and lastname t
 
 As superadmin you can see and delete any user and use filters the search.
 <div style="display: flex; justify-content: space-around;">
-<center><img src="./src/img/readme/mobile.gif"/></center>
-<center><img src="./src/img/readme/mobile (1).gif"/></center>
-<center><img src="./src/img/readme/mobile (2).gif"/></center>
+<center><img src="./public/mobile.gif"/></center>
+<center><img src="./public/mobile (1).gif"/></center>
+<center><img src="./public/mobile (2).gif"/></center>
 </div>
 
 ## Stack
@@ -84,7 +84,7 @@ Unfortunately, the server is hosted on a free site and it is very likely that is
 https://github.com/Javi-Gallego/FSD_Proyecto5.git
 
 If you need to run the server locally, you will need to go to ./src/services/apiCalls.js and put the right urlRoot.
-<center><img src="./src/img/readme/rooturl.jpg"></center>
+<center><img src="./public/rooturl.jpg"></center>
 
 ## Pages
 
@@ -105,13 +105,13 @@ To log as a normal user you can either use this one or you can register your own
 
 - REGISTER :earth_africa:
 
-<center><img src="./src/img/readme/register.jpg"></center>
+<center><img src="./public/register.jpg"></center>
 
 As you are writing in the inputs you can see if the field has an error and is not valid
 
 - LOGIN :earth_africa:
 
-<center><img src="./src/img/readme/login.jpg"></center> 
+<center><img src="./public/login.jpg"></center> 
 
 
 To log as a super_admin 
@@ -133,7 +133,7 @@ To log as a normal user (or you can register your own)
 
 - HEADER 
 
-<center><img src="./src/img/readme/navbar.jpg"></center> 
+<center><img src="./public/navbar.jpg"></center> 
 
 Detail of de header when a user is logged. There are three sections.
 
@@ -141,7 +141,7 @@ In the left we can go to "profile", "my posts", "following" and "search". In you
 
 - PROFILE
 
-<center><img src="./src/img/readme/profile.jpg"></center> 
+<center><img src="./public/profile.jpg"></center> 
 
 A detailed view of the user data. You can update some of the fields.
 
@@ -151,11 +151,11 @@ If you make your profile private your post will not be seen by anyone outside yo
 
 If you deactivate your account, you no longer will be able to log in. Your profile and posts will not be reachable.
 
-<center><img src="./src/img/readme/changepassword.jpg"></center>
+<center><img src="./public/changepassword.jpg"></center>
 
 - LAUNCHER
 
-<center><img src="./src/img/readme/launcher.jpg"></center>
+<center><img src="./public/launcher.jpg"></center>
 
 A rocket can not be put in motion without a "Launcher". In the Launcher you will have three sections: Timeline, +Rated, +Trendy (+Trendy is not implemented as for now)
 Timeline are the post of those who are in my "following" list 
@@ -164,7 +164,7 @@ Timeline are the post of those who are in my "following" list
 
 - WRITE POST
 
-<center><img src="./src/img/readme/writepost.jpg"></center>
+<center><img src="./public/writepost.jpg"></center>
 
 You can upload a photo clicking on the image and write a text of maximum 150 words. In the last input you can write words separated by a space (with this keywords the +Trend will be created)
 
@@ -177,11 +177,11 @@ You can upload a photo clicking on the image and write a text of maximum 150 wor
 In this page you can search for any user in the database and apply three optional filters: name, email and role
 The search will retrieve all users than matches the filter partially, if you search por the name "er" and you have an user with the name "Javier" that user will be shown
 
-<center><img src="./src/img/readme/searchuser.jpg"></center>
+<center><img src="./public/searchuser.jpg"></center>
 
 You can choose how many results will be shown in each page and navigate through the different pages
 
-<center><img src="./src/img/readme/searchuser2.jpg"></center>
+<center><img src="./public/searchuser2.jpg"></center>
 
 If you click in any user you will see a detailed view and you can delete the user from the database (only deactivate users can be deleted). Change role is not implemented.
 </details>
